@@ -5,10 +5,10 @@ import { StatisticsList } from 'components/StatisticsList/StatisticsList';
 const StatisticsPage = () => {
   return (
     <div>
-      <Section title="Phonebook">
+      <Section title="User">
         <UserForm />
       </Section>
-      <Section title="Contacts">
+      <Section title="Statistics">
         <>
           <StatisticsList />
         </>
