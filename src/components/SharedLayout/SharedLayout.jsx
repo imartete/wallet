@@ -14,13 +14,10 @@ const SharedLayout = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/statistics">Statistics</NavLink>
             </li>
             <li>
-              <NavLink to="/register">Register</NavLink>
-            </li>
-            <li>
-              <NavLink to="/contacts">Contacts</NavLink>
+              <NavLink to="/currency">Currency</NavLink>
             </li>
           </ul>
         </nav>

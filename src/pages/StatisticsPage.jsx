@@ -1,6 +1,6 @@
 import { UserForm } from 'components/UserForm/UserForm';
 import { Section } from 'components/Section/Section';
-import { StatisticstList } from 'components/StatisticsList/StatisticstList';
+import { StatisticsList } from 'components/StatisticsList/StatisticsList';
 
 const StatisticsPage = () => {
   return (
@@ -10,7 +10,7 @@ const StatisticsPage = () => {
       </Section>
       <Section title="Contacts">
         <>
-          <StatisticstList />
+          <StatisticsList />
         </>
       </Section>
     </div>
