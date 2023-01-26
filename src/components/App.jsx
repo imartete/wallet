@@ -1,23 +1,20 @@
-import { useTheme } from '@chakra-ui/react';
-import { useMedia } from './Media/useMedia';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import StatisticsPage from '../pages/StatisticsPage';
+import HomePage from '../pages/HomePage';
+import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
+import SharedLayout from './SharedLayout/SharedLayout';
 
 export const App = () => {
-  const media = useMedia();
-  console.log(media);
-  const theme = useTheme();
-
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      React homework template
-    </div>
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
+        <Route path="contacts" element={<StatisticsPage />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Route>
+    </Routes>
   );
 };
