@@ -1,9 +1,10 @@
 import { Box } from '@chakra-ui/react';
+import { Currency } from 'components/Currency/Currency';
 
 const CurrencyPage = () => {
   return (
     <Box>
-      <div>CurrencyPage</div>
+      <Currency />
     </Box>
   );
 };
