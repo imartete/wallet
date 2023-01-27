@@ -1,5 +1,11 @@
+import { Box } from '@chakra-ui/react';
+
 const CurrencyPage = () => {
-  return <div>CurrencyPage</div>;
+  return (
+    <Box>
+      <div>CurrencyPage</div>
+    </Box>
+  );
 };
 
 export default CurrencyPage;
