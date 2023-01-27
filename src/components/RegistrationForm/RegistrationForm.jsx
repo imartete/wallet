@@ -12,16 +12,15 @@ import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import PasswordStrengthBar from 'react-password-strength-bar';
 import { useState } from 'react';
+import { MdMail, MdLock, MdPerson } from 'react-icons/md';
+import { IoMdEyeOff, IoMdEye } from 'react-icons/io';
 
 let schema = yup.object().shape({
-  email: yup
-    .string()
-    .email('Please follow the email pattern')
-    .required('E-mail is required'),
+  email: yup.string().email('Invalid email').required('E-mail is required'),
   password: yup
     .string()
-    .min(6, 'Password is too short - min 6 chars')
-    .max(12, 'Password is too long - max 12 chars')
+    .min(6, 'Password should have at least 6 characters')
+    .max(12, 'Sorry, password is too long - maximum 12 characters')
     .required('Password is required'),
   confirmPassword: yup
     .string()
@@ -29,8 +28,8 @@ let schema = yup.object().shape({
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
   firstName: yup
     .string()
-    .min(2, 'Name should be at least 2 char long')
-    .max(12, 'Sorry, name is too long - max 12 chars')
+    .min(2, 'Name should have at least 2 chararacters')
+    .max(12, 'Sorry, name is too long')
     .required('Name is required'),
 });
 
@@ -48,6 +47,7 @@ export function RegistrationForm() {
       }}
       validationSchema={schema}
       onSubmit={(values, actions) => {
+        console.log(values);
         alert(JSON.stringify(values, null, 2));
         actions.setSubmitting(false);
       }}
@@ -65,8 +65,7 @@ export function RegistrationForm() {
                       pointerEvents="none"
                       color="gray.300"
                       fontSize="1.2em"
-                      /*                       children={<MdEmail />}
-                       */
+                      children={<MdMail />}
                     />
                     <Input {...field} variant="flushed" placeholder="E-mail" />
                   </InputGroup>
@@ -84,12 +83,15 @@ export function RegistrationForm() {
                       pointerEvents="none"
                       color="gray.300"
                       fontSize="1.2em"
-                      /*                       children={<FaUnlockAlt />}
-                       */
+                      children={<MdLock />}
                     />
                     <InputRightElement width="4.5rem">
                       <Button h="1.75rem" size="sm" onClick={handleClick}>
-                        {show ? 'Hide' : 'Show'}
+                        {show ? (
+                          <IoMdEyeOff size={'1.3em'} />
+                        ) : (
+                          <IoMdEye size={'1.3em'} />
+                        )}
                       </Button>
                     </InputRightElement>
                     <Input
@@ -106,12 +108,10 @@ export function RegistrationForm() {
                       '#24CCA7',
                       '#24CCA7',
                       '#24CCA7',
-                      '#24CCA7',
                     ]}
+                    scoreWords={[]}
+                    shortScoreWord=""
                     minLength={6}
-                    onChangeScore={(score, feedback) => {
-                      console.log(score, feedback);
-                    }}
                     password={form.values.password}
                   />
                   <FormErrorMessage>{form.errors.password}</FormErrorMessage>
@@ -130,8 +130,7 @@ export function RegistrationForm() {
                       pointerEvents="none"
                       color="gray.300"
                       fontSize="1.2em"
-                      /*                       children={<FaUnlockAlt />}
-                       */
+                      children={<MdLock />}
                     />
                     <Input
                       {...field}
@@ -156,8 +155,7 @@ export function RegistrationForm() {
                       pointerEvents="none"
                       color="gray.300"
                       fontSize="1.2em"
-                      /*                       children={<MdEmail />}
-                       */
+                      children={<MdPerson />}
                     />
                     <Input
                       {...field}
@@ -171,16 +169,18 @@ export function RegistrationForm() {
             </Field>
           </Stack>
           <Button
-            /*             _disabled={!props.dirty}
-             */
+            /*  disabled={!props.dirty}  */
             mt={4}
             disabled
             colorScheme="teal"
             isLoading={props.isSubmitting}
             type="submit"
           >
-            Register
+            REGISTER
           </Button>
+          {/*  <Button as={<Link />} to="/login" colorScheme="blue", variant='outline'>
+            LOG IN
+          </Button> */}
         </Form>
       )}
     </Formik>
