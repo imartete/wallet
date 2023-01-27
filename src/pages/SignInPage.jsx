@@ -1,5 +1,7 @@
+import { RegistrationForm } from 'components/RegistrationForm/RegistrationForm';
+
 const SignInPage = () => {
-  return <div>LoginPage</div>;
+  return <RegistrationForm />;
 };
 
 export default SignInPage;
