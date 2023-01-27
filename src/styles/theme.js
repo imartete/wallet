@@ -22,6 +22,15 @@ const colors = {
   etc: 'use declarative names (not black, green, red)',
 };
 
+const sizes = {
+  container: {
+    sm: '480px',
+    md: '768px',
+    lg: '1280px',
+    xl: '1536px',
+  },
+};
+
 const breakpoints = {
   sm: '320px',
   md: '768px',
@@ -51,4 +60,5 @@ export const theme = extendTheme({
   space,
   fonts,
   fontSizes,
+  sizes,
 });
