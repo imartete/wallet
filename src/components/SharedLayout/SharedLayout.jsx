@@ -1,8 +1,10 @@
+// import { useMedia } from 'components/Media/useMedia';
 import UserMenu from 'components/UserMenu/UserMenu';
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
 const SharedLayout = () => {
+  // const { isDesktop, isTablet, isMobile } = useMedia();
   return (
     <>
       <header>
