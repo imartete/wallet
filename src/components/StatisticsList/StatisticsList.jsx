@@ -1,3 +1,9 @@
+import Chart from 'components/Chart/Chart';
+
 export const StatisticsList = function () {
-  return <div>StatisticsList</div>;
+  return (
+    <div>
+      <Chart />
+    </div>
+  );
 };
