@@ -29,7 +29,7 @@ const Chart = () => {
     '#00AD84',
   ];
   const options = {
-    cutout: '50%',
+    cutout: '67%',
   };
 
   const data = {
