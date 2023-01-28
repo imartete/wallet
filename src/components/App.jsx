@@ -5,8 +5,18 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import CurrencyPage from 'pages/CurrencyPage';
 import SignInPage from '../pages/SignInPage';
 import SignUpPage from '../pages/SignUpPage';
+import { LoginForm } from './LoginForm/LoginForm';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchCurrentUser } from 'redux/auth/authOperations';
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
