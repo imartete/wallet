@@ -7,11 +7,12 @@ import {
   Select,
   Stack,
   Switch,
-  useControllableState,
 } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
+/* import { useEffect } from 'react'; */
 import { useState } from 'react';
-import * as yup from 'yup';
+/* import { getTransactionCategories } from 'service/transactionApi';
+ */ import * as yup from 'yup';
 
 let schema = yup.object().shape({
   type: yup.bool().oneOf([true]),
@@ -21,7 +22,12 @@ let schema = yup.object().shape({
 });
 
 export function AddTransactionForm() {
-  const [checked, setChecked] = useControllableState(true);
+  const [checked, setChecked] = useState(true);
+
+  /* useEffect(() => {
+    let result = getTransactionCategories();
+    console.log(result);
+  }); */
 
   return (
     <Formik
@@ -48,56 +54,68 @@ export function AddTransactionForm() {
               <Switch
                 size="lg"
                 id="type"
-                /*                 onClick={() => {
-                  setChecked(ch => !ch);
-                  console.log(checked);
-                }}
-                isChecked={checked} */
+                defaultChecked={checked}
+                onChange={() => setChecked(ch => !ch)}
               />
               <FormLabel htmlFor="type" mb="0">
                 Expense
               </FormLabel>
             </FormControl>
-            <Field name="category">
-              {({ field, form }) => (
-                <FormControl isInvalid={form.errors.date && form.touched.date}>
-                  <Select placeholder="Select option">
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
-                  </Select>
-                  <FormErrorMessage>{form.errors.date}</FormErrorMessage>
-                </FormControl>
-              )}
-            </Field>
-            <Field name="amount">
-              {({ field, form }) => (
-                <FormControl
-                  isInvalid={form.errors.amount && form.touched.amount}
-                >
-                  <Input
-                    {...field}
-                    variant="flushed"
-                    placeholder="0.00"
-                    type="number"
-                  />
-                  <FormErrorMessage>{form.errors.amount}</FormErrorMessage>
-                </FormControl>
-              )}
-            </Field>
-            <Field name="date">
-              {({ field, form }) => (
-                <FormControl isInvalid={form.errors.date && form.touched.date}>
-                  <Input
-                    {...field}
-                    variant="flushed"
-                    placeholder="Select Date and Time"
-                    type="date"
-                  />
-                  <FormErrorMessage>{form.errors.date}</FormErrorMessage>
-                </FormControl>
-              )}
-            </Field>
+            {checked && (
+              <Field name="category">
+                {({ field, form }) => (
+                  <FormControl
+                    isInvalid={form.errors.date && form.touched.date}
+                  >
+                    <Select
+                      {...field}
+                      placeholder="Select option"
+                      variant="flushed"
+                    >
+                      <option value="option1">Option 1</option>
+                      <option value="option2">Option 2</option>
+                      <option value="option3">Option 3</option>
+                    </Select>
+                    <FormErrorMessage>{form.errors.date}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+            )}
+            <Stack direction={['column', 'row']} spacing="24px">
+              <Field name="amount">
+                {({ field, form }) => (
+                  <FormControl
+                    isInvalid={form.errors.amount && form.touched.amount}
+                  >
+                    <Input
+                      textAlign="center"
+                      fontWeight="600"
+                      {...field}
+                      variant="flushed"
+                      placeholder="0.00"
+                      type="number"
+                    />
+                    <FormErrorMessage>{form.errors.amount}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+              <Field name="date">
+                {({ field, form }) => (
+                  <FormControl
+                    isInvalid={form.errors.date && form.touched.date}
+                  >
+                    <Input
+                      textAlign="center"
+                      {...field}
+                      variant="flushed"
+                      placeholder="Select Date and Time"
+                      type="date"
+                    />
+                    <FormErrorMessage>{form.errors.date}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+            </Stack>
             <Field name="comment">
               {({ field, form }) => (
                 <FormControl
@@ -119,7 +137,7 @@ export function AddTransactionForm() {
               ADD
             </Button>
             <Button colorScheme="blue" variant="outline">
-              LOG IN
+              CANCEL
             </Button>
           </Stack>
         </Form>
