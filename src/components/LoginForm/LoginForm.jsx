@@ -13,6 +13,8 @@ import * as yup from 'yup';
 import { useState } from 'react';
 import { MdMail, MdLock } from 'react-icons/md';
 import { IoMdEyeOff, IoMdEye } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/authOperations';
 
 let schema = yup.object().shape({
   email: yup.string().email('Invalid email').required('E-mail is required'),
@@ -25,6 +27,7 @@ let schema = yup.object().shape({
 
 export function LoginForm() {
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
   const handleClick = () => setShow(!show);
 
   return (
@@ -35,8 +38,7 @@ export function LoginForm() {
       }}
       validationSchema={schema}
       onSubmit={(values, actions) => {
-        console.log(values);
-        alert(JSON.stringify(values, null, 2));
+        dispatch(logIn(values));
         actions.setSubmitting(false);
       }}
     >
@@ -93,20 +95,19 @@ export function LoginForm() {
                 </FormControl>
               )}
             </Field>
-          </Stack>
-          <Button
-            /*  disabled={!props.dirty}  */
-            mt={4}
-            disabled
-            colorScheme="teal"
-            isLoading={props.isSubmitting}
-            type="submit"
-          >
-            LOG IN
-          </Button>
-          {/*  <Button as={<Link />} to="/register" colorScheme="blue", variant='outline'>
+            <Button
+              /*  isDisabled={!props.dirty}  */
+              mt={4}
+              colorScheme="teal"
+              isLoading={props.isSubmitting}
+              type="submit"
+            >
+              LOG IN
+            </Button>
+            {/*  <Button as={<Link />} to="/register" colorScheme="blue", variant='outline'>
             REGISTER
           </Button> */}
+          </Stack>
         </Form>
       )}
     </Formik>
