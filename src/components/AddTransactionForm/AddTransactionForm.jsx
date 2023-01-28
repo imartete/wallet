@@ -7,6 +7,7 @@ import {
   Select,
   Stack,
   Switch,
+  Text,
 } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import { fetchCategories } from 'redux/transaction/transactionOperations';
@@ -18,8 +19,8 @@ import transactionSelectors from 'redux/transaction/transactionSelectors';
 const { getCategories } = transactionSelectors;
 
 let schema = yup.object().shape({
-  transactionDate: yup.string(),
-  type: yup.string(),
+  transactionDate: yup.string().required('This field is required'),
+  type: yup.string().required(),
   categoryId: yup.string(),
   comment: yup.string().max(50, 'Sorry, comment is too long'),
   amount: yup.number().positive().required('This field is required'),
@@ -41,7 +42,7 @@ export function AddTransactionForm() {
         type: '',
         categoryId: '',
         comment: '',
-        amount: '',
+        amount: 0,
       }}
       validationSchema={schema}
       onSubmit={(values, actions) => {
@@ -56,23 +57,19 @@ export function AddTransactionForm() {
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.type && form.touched.type}>
                   <Stack direction={['row']} spacing="5px">
-                    <FormLabel margin="0" htmlFor="type" mb="0">
-                      Income
-                    </FormLabel>
+                    <Text>Income</Text>
                     <Switch
                       {...field}
                       name="type"
                       size="lg"
                       id="type"
-                      defaultChecked={checked}
+                      isChecked={checked}
                       value={checked ? 'EXPENSE' : 'INCOME'}
                       onChange={() => {
                         setChecked(ch => !ch);
                       }}
                     />
-                    <FormLabel htmlFor="type" mb="0">
-                      Expense
-                    </FormLabel>
+                    <Text>Expense</Text>
                   </Stack>
                   <FormErrorMessage>{form.errors.type}</FormErrorMessage>
                 </FormControl>
