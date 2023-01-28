@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as transactionAPI from '../../service/transactionApi';
 
-const fetchTransactions = createAsyncThunk(
+export const fetchTransactions = createAsyncThunk(
   'transactions/fetchTransactions',
   async (_, { rejectWithValue }) => {
     try {
@@ -49,7 +49,7 @@ const updateTransaction = createAsyncThunk(
   }
 );
 
-const getCategories = createAsyncThunk(
+export const fetchCategories = createAsyncThunk(
   'transactions/getCategories',
   async (_, { rejectWithValue }) => {
     try {
@@ -78,7 +78,7 @@ const operations = {
   addTransaction,
   deleteTransaction,
   updateTransaction,
-  getCategories,
+  fetchCategories,
   getSumTransactions,
 };
 export default operations;
