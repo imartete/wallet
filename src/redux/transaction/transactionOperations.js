@@ -61,7 +61,7 @@ const getCategories = createAsyncThunk(
   }
 );
 
-const getSumTransactions = createAsyncThunk(
+export const getSumTransactions = createAsyncThunk(
   'transactions/getSumTransactions',
   async (query, { rejectWithValue }) => {
     try {
