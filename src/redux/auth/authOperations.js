@@ -15,10 +15,11 @@ const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await authAPI.postRegister(credentials);
+      const data = await authAPI.postRegister(credentials);
       token.set(data.token);
       return data;
     } catch (error) {
+      console.log(error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -28,7 +29,7 @@ const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await authAPI.postLogin(credentials);
+      const data = await authAPI.postLogin(credentials);
       token.set(data.token);
       return data;
     } catch (error) {
@@ -60,9 +61,10 @@ const fetchCurrentUser = createAsyncThunk(
 
     token.set(persistedToken);
     try {
-      const { data } = await authAPI.getCurrentUser();
+      const data = await authAPI.getCurrentUser();
       return data;
     } catch (error) {
+      console.log(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
