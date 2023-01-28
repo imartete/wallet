@@ -6,10 +6,12 @@ import { Box } from '@chakra-ui/react';
 export const Currency = () => {
   const [currency, setCurrency] = useState(null);
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchCurrency() {
       try {
+        setIsLoading(true);
         const data = await getCurrency();
 
         const dataCurrency = data.filter(el => {
@@ -19,11 +21,14 @@ export const Currency = () => {
           if (el['currencyCodeA'] === 840 && el['currencyCodeB'] === 980) {
             return el;
           }
+          return null;
         });
 
         setCurrency(dataCurrency);
       } catch {
         setError(true);
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchCurrency();
@@ -31,6 +36,25 @@ export const Currency = () => {
 
   return (
     <>
+      {isLoading && <p>Please wait... </p>}
+
+      {error && (
+        <Box>
+          <table>
+            <thead>
+              <tr>
+                <th>Currency</th>
+                <th>Purchase</th>
+                <th>Sale</th>
+              </tr>
+            </thead>
+            <div>
+              <p>Sorry, too many requests, try again late...</p>
+            </div>
+          </table>
+        </Box>
+      )}
+
       {currency && (
         <Box>
           <table>
