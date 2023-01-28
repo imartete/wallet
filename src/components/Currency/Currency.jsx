@@ -1,7 +1,11 @@
 import { getCurrency } from '../../service/currencyApi';
 import { useEffect, useState } from 'react';
-// import dataCurrency from '../../service/currency.json';
-import { Box } from '@chakra-ui/react';
+import {
+  CurrencyTableWrap,
+  CurrencyTable,
+  TableHead,
+  TableData,
+} from './Currency.styled';
 
 export const Currency = () => {
   const [currency, setCurrency] = useState(null);
@@ -39,30 +43,31 @@ export const Currency = () => {
       {isLoading && <p>Please wait... </p>}
 
       {error && (
-        <Box>
-          <table>
+        <CurrencyTableWrap>
+          <CurrencyTable>
             <thead>
               <tr>
-                <th>Currency</th>
-                <th>Purchase</th>
-                <th>Sale</th>
+                <TableHead>Currency</TableHead>
+                <TableHead>Purchase</TableHead>
+                <TableHead>Sale</TableHead>
               </tr>
             </thead>
-            <div>
+            <td colspan="3">Sorry, too many requests, try again late...</td>
+            {/* <div>
               <p>Sorry, too many requests, try again late...</p>
-            </div>
-          </table>
-        </Box>
+            </div> */}
+          </CurrencyTable>
+        </CurrencyTableWrap>
       )}
 
       {currency && (
-        <Box>
-          <table>
+        <CurrencyTableWrap>
+          <CurrencyTable>
             <thead>
               <tr>
-                <th>Currency</th>
-                <th>Purchase</th>
-                <th>Sale</th>
+                <TableHead>Currency</TableHead>
+                <TableHead>Purchase</TableHead>
+                <TableHead>Sale</TableHead>
               </tr>
             </thead>
 
@@ -73,15 +78,15 @@ export const Currency = () => {
                 const rateSellCurrency = Number(rateSell).toFixed(2);
                 return (
                   <tr key={currencyCodeA}>
-                    <td>{codeCurrency}</td>
-                    <td>{rateBuyCurrency}</td>
-                    <td>{rateSellCurrency}</td>
+                    <TableData>{codeCurrency}</TableData>
+                    <TableData>{rateBuyCurrency}</TableData>
+                    <TableData>{rateSellCurrency}</TableData>
                   </tr>
                 );
               })}
             </tbody>
-          </table>
-        </Box>
+          </CurrencyTable>
+        </CurrencyTableWrap>
       )}
     </>
   );
