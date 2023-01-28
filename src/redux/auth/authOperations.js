@@ -25,7 +25,7 @@ const register = createAsyncThunk(
   }
 );
 
-const logIn = createAsyncThunk(
+export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
