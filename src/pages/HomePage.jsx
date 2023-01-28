@@ -24,15 +24,7 @@ const dataArr = [
 ];
 
 const HomePage = () => {
-  return (
-    <div>
-      <br />
-      <br /> <h1>Transactions</h1>
-      <br />
-      <br />
-      <Transactions dataArr={dataArr} />
-    </div>
-  );
+  return <div>HomePage</div>;
 };
 
 export default HomePage;

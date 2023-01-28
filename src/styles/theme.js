@@ -1,6 +1,16 @@
 import { extendTheme } from '@chakra-ui/react';
 
 const colors = {
+  expenses: '#FED057', //yellow
+  products: '#FFD8D0', //light pink
+  car: '#FD9498', //pink
+  care: '#C5BAFF', // purple
+  child: '#6E78E8', // purple blue
+  household: '#4A56E2', //blue
+  education: '#81E1FF', //skyblue
+  leisure: '#24CCA7', //light green
+  other: '#00AD84', //green
+
   mainBrand: '#',
   secondaryBrand: '#',
 
@@ -20,6 +30,15 @@ const colors = {
   disabled: '',
 
   etc: 'use declarative names (not black, green, red)',
+};
+
+const sizes = {
+  container: {
+    sm: '480px',
+    md: '768px',
+    lg: '1280px',
+    xl: '1536px',
+  },
 };
 
 const breakpoints = {
@@ -51,4 +70,5 @@ export const theme = extendTheme({
   space,
   fonts,
   fontSizes,
+  sizes,
 });
