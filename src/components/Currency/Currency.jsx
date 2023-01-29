@@ -1,5 +1,6 @@
 import { getCurrency } from '../../service/currencyApi';
 import { useEffect, useState } from 'react';
+import Loader from 'components/Loader/Loader';
 import {
   CurrencyTableWrap,
   CurrencyTable,
@@ -40,7 +41,7 @@ export const Currency = () => {
 
   return (
     <>
-      {isLoading && <p>Please wait... </p>}
+      {isLoading && <Loader />}
 
       {error && (
         <CurrencyTableWrap>
