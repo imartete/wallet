@@ -1,76 +1,51 @@
-// import { useMedia } from 'components/Media/useMedia';
+import { useMedia } from 'components/Media/useMedia';
 import Container from 'components/Container/Container';
-import LogoIcon from 'components/LogoIcon/LogoIcon';
+import CustomIcon from 'components/CustomIcon/CustomIcon';
 import UserMenu from 'components/UserMenu/UserMenu';
+import Navigation from 'components/Navigation/Navigation';
 import { Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import { Box, Text, IconButton } from '@chakra-ui/react';
-import { MdHome, MdTimeline } from 'react-icons/md';
-import { TbCurrencyDollar } from 'react-icons/tb';
+import { Outlet } from 'react-router-dom';
+import { Box, Text } from '@chakra-ui/react';
 
 const SharedLayout = () => {
-  // const { isDesktop, isTablet, isMobile } = useMedia();
+  const { isNotMobile } = useMedia();
   return (
     <>
       <header>
         <Container>
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Box display="flex" alignItems="center" gap="15.5px">
-              <LogoIcon width="30px" height="30px" />
-              <Text>Wallet</Text>
-            </Box>
-            <UserMenu />
-          </Box>
-
-          <nav>
-            <ul
-              style={{
-                listStyle: 'none',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: '38px',
-              }}
+          {isNotMobile ? (
+            <Box
+              py="20px"
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
             >
-              <li>
-                <NavLink to="/" end>
-                  <IconButton
-                    bg="#4A56E2"
-                    w="38px"
-                    h="38px"
-                    aria-label="Homepage Icon Button"
-                    icon={<MdHome color="white" size="24px" />}
-                  />
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/statistics">
-                  <IconButton
-                    bg="#4A56E2"
-                    w="38px"
-                    h="38px"
-                    aria-label="Statistics Icon Button"
-                    icon={<MdTimeline color="white" size="24px" />}
-                  />
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/currency">
-                  <IconButton
-                    bg="#4A56E2"
-                    w="38px"
-                    h="38px"
-                    aria-label="Currency Icon Button"
-                    icon={<TbCurrencyDollar color="white" size="24px" />}
-                  />
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
+              <Box display="flex" alignItems="center" gap="20px">
+                <CustomIcon name="icon-logo" color="currentColor" size="40px" />
+                <Text fontSize="30px" fontWeight="700">
+                  Wallet
+                </Text>
+              </Box>
+              <UserMenu />
+            </Box>
+          ) : (
+            <Box
+              mb="15px"
+              py="15px"
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Box display="flex" alignItems="center" gap="15.5px">
+                <CustomIcon name="icon-logo" color="currentColor" size="30px" />
+                <Text fontSize="24px" fontWeight="700">
+                  Wallet
+                </Text>
+              </Box>
+              <UserMenu />
+            </Box>
+          )}
+          <Navigation />
         </Container>
       </header>
       <main>
