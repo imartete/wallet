@@ -31,7 +31,7 @@ const Modal = () => {
   return ReactDOM.createPortal(
     <Overlay onClick={handleBackdrop}>
       <ModalWindow>
-        <AddTransactionForm />
+        <AddTransactionForm onClick={handleBackdrop} />
       </ModalWindow>
     </Overlay>,
 
