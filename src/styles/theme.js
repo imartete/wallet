@@ -59,6 +59,7 @@ const space = {
 
 const fonts = {
   main: '',
+  
 };
 
 const fontSizes = {};

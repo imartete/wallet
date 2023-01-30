@@ -64,10 +64,9 @@ const authSlice = createSlice({
           state.isRefreshingUser = false;
         }
       )
-      .addCase(
-        authOperations.fetchCurrentUser.rejected,
-        state => (state.isRefreshingUser = false)
-      )
+      .addCase(authOperations.fetchCurrentUser.rejected, state => {
+        state.isRefreshingUser = false;
+      })
       .addMatcher(isAnyOf(...getActions('pending')), pending)
       .addMatcher(isAnyOf(...getActions('rejected')), rejected)
       .addMatcher(isAnyOf(...getActions('fulfilled')), fulfilled);
