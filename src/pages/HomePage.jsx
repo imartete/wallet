@@ -26,7 +26,8 @@ const dataArr = [
 ];
 
 const HomePage = () => {
-  return <OpenModalTransitionBtn />;
+  return <Transactions dataArr={dataArr} />;
+  <OpenModalTransitionBtn />;
 };
 
 export default HomePage;
