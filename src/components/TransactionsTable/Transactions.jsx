@@ -6,8 +6,11 @@ export const Transactions = function ({ dataArr }) {
   const { isMobile } = useMedia();
   return (
     <>
-      {isMobile && <TransactionsCards dataArr={dataArr} />}
-      {!isMobile && <TransactionsTable dataArr={dataArr} />}
+      {isMobile ? (
+        <TransactionsCards dataArr={dataArr} />
+      ) : (
+        <TransactionsTable dataArr={dataArr} />
+      )}
     </>
   );
 };

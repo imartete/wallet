@@ -1,44 +1,62 @@
+.transactionSection {
+  margin-top: 20px;
+}
 .transactionTable {
-  background-color: grey;
-  padding-top: 20px;
   padding-left: 32px;
   padding-right: 32px;
+  width: 704px;
 }
 .transactionTableHead {
-  padding: 16px 20px;
-  border-radius: 30px;
   background-color: #ffffff;
+  width: 100%;
+  height: 58px;
 }
+.transactionTableHead th:nth-child(1) {
+  border-radius: 30px 0 0 30px;
+}
+
+.transactionTableHead th:nth-last-child(1) {
+  border-radius: 0 30px 30px 0;
+}
+
 .transactionTitles {
   font-weight: 700;
   font-size: 18px;
   line-height: 27px;
+  padding: 16px 20px;
+  text-align: left;
+}
+
+.transactionBodyLine {
+  width: 100%;
+  height: 58px;
+}
+.transactionBodyLine:not(:last-child) {
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
 }
 .transactionsValues {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+  padding: 16px 20px;
+  text-align: left;
 }
 .transactionsValuesSum {
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
 }
-.transactionsValues:not(:last-child) {
+/* .transactionsValues:not(:last-child) {
   border-bottom: 1px solid #dcdcdf;
   box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
-}
+} */
 
-.transactionList.income .balance {
+.income {
+  composes: transactionsValuesSum;
   color: #24cca7;
 }
-.transactionList.expense .balance {
+.expense {
+  composes: transactionsValuesSum;
   color: #ff6596;
-}
-.transactionList.expense .transactionItem::before {
-  background: #ff6596;
-}
-
-.transactionList.income .transactionItem::before {
-  background: #24cca7;
 }

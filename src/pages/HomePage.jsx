@@ -25,6 +25,7 @@ const dataArr = [
 ];
 
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return <Transactions dataArr={dataArr} />;
 };
+
 export default HomePage;
