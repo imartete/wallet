@@ -8,7 +8,7 @@ import {
   TableData,
 } from './Currency.styled';
 
-export const Currency = () => {
+const Currency = () => {
   const [currency, setCurrency] = useState(null);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -92,3 +92,5 @@ export const Currency = () => {
     </>
   );
 };
+
+export default Currency;

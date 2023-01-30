@@ -1,15 +1,14 @@
 import React from 'react';
-import { Box } from '@chakra-ui/react';
-
+import { BalanceWrap, BalanceTitle, BalanceText } from './Balance.styled';
 const Balance = () => {
   return (
-    <Box>
-      <div>
-        <h2>Your balance</h2>
-        <p>
-          <span> &#8372; </span> 20 000
-        </p>
-      </div>
-    </Box>
+    <BalanceWrap>
+      <BalanceTitle>Your balance</BalanceTitle>
+      <BalanceText>
+        <BalanceText> &#8372; </BalanceText> 20 000.00
+      </BalanceText>
+    </BalanceWrap>
   );
 };
+
+export default Balance;

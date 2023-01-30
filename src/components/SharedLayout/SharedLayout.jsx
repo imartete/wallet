@@ -6,6 +6,8 @@ import Navigation from 'components/Navigation/Navigation';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Box, Text } from '@chakra-ui/react';
+import Currency from '../Currency/Currency';
+import Balance from '../Balance/Balance';
 
 const SharedLayout = () => {
   const { isNotMobile } = useMedia();
@@ -50,6 +52,8 @@ const SharedLayout = () => {
       </header>
       <main>
         <Container>
+          <Balance />
+          <Currency />
           <Suspense fallback={<div>Loading page...</div>}>
             <Outlet />
           </Suspense>
