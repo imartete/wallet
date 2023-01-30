@@ -59,7 +59,7 @@ const space = {
 
 const fonts = {
   main: '',
-  accented: 'Poppins, sans-serif',
+  
 };
 
 const fontSizes = {};

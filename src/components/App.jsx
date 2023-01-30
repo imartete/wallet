@@ -8,6 +8,8 @@ import SignUpPage from '../pages/SignUpPage';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -19,12 +21,37 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="statistics" element={<StatisticsPage />} />
-        <Route path="currency" element={<CurrencyPage />} />
+        <Route
+          index
+          element={
+            <PrivateRoute redirectTo="/sign-in" component={<HomePage />} />
+          }
+        />
+
+        <Route
+          path="statistics"
+          element={
+            <PrivateRoute
+              redirectTo="/sign-in"
+              component={<StatisticsPage />}
+            />
+          }
+        />
+        <Route
+          path="currency"
+          element={
+            <PrivateRoute redirectTo="/sign-in" component={<CurrencyPage />} />
+          }
+        />
       </Route>
-      <Route path="/sign-in" element={<SignInPage />} />
-      <Route path="/sign-up" element={<SignUpPage />} />
+      <Route
+        path="/sign-in"
+        element={<RestrictedRoute redirectTo="/" component={<SignInPage />} />}
+      />
+      <Route
+        path="/sign-up"
+        element={<RestrictedRoute redirectTo="/" component={<SignUpPage />} />}
+      />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

@@ -1,3 +1,4 @@
+import Modal from 'components/ModalAddTransaction/ModalAddTransaction';
 import { Transactions } from 'components/TransactionsTable/Transactions';
 import OpenModalTransitionBtn from 'components/OpenModalTransitionBtn/OpenModalTransitionBtn';
 
@@ -25,7 +26,7 @@ const dataArr = [
 ];
 
 const HomePage = () => {
-  return <Transactions dataArr={dataArr} />;
+  return <OpenModalTransitionBtn />;
 };
 
 export default HomePage;
