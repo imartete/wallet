@@ -1,12 +1,11 @@
-import { Box } from '@chakra-ui/react';
+import { Navigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import { Currency } from 'components/Currency/Currency';
 
 const CurrencyPage = () => {
-  return (
-    <Box>
-      <Currency />
-    </Box>
-  );
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  if (isMobile) return <Currency />;
+  return <Navigate to="/" />;
 };
 
 export default CurrencyPage;

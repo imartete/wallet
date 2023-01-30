@@ -14,6 +14,8 @@ import PasswordStrengthBar from 'react-password-strength-bar';
 import { useState } from 'react';
 import { MdMail, MdLock, MdPerson } from 'react-icons/md';
 import { IoMdEyeOff, IoMdEye } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import { register } from 'redux/auth/authOperations';
 
 let schema = yup.object().shape({
   email: yup.string().email('Invalid email').required('E-mail is required'),
@@ -26,7 +28,7 @@ let schema = yup.object().shape({
     .string()
     .required('Please confirm your password, otherwise the world will end')
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
-  firstName: yup
+  username: yup
     .string()
     .min(2, 'Name should have at least 2 chararacters')
     .max(12, 'Sorry, name is too long')
@@ -35,6 +37,7 @@ let schema = yup.object().shape({
 
 export function RegistrationForm() {
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
   const handleClick = () => setShow(!show);
 
   return (
@@ -43,12 +46,12 @@ export function RegistrationForm() {
         email: '',
         password: '',
         confirmPassword: '',
-        firstName: '',
+        username: '',
       }}
       validationSchema={schema}
       onSubmit={(values, actions) => {
-        console.log(values);
-        alert(JSON.stringify(values, null, 2));
+        const { email, password, username } = values;
+        dispatch(register({ email, password, username }));
         actions.setSubmitting(false);
       }}
     >
@@ -145,10 +148,10 @@ export function RegistrationForm() {
                 </FormControl>
               )}
             </Field>
-            <Field name="firstName">
+            <Field name="username">
               {({ field, form }) => (
                 <FormControl
-                  isInvalid={form.errors.firstName && form.touched.firstName}
+                  isInvalid={form.errors.username && form.touched.username}
                 >
                   <InputGroup>
                     <InputLeftElement
@@ -163,24 +166,23 @@ export function RegistrationForm() {
                       placeholder="First name"
                     />
                   </InputGroup>
-                  <FormErrorMessage>{form.errors.firstName}</FormErrorMessage>
+                  <FormErrorMessage>{form.errors.username}</FormErrorMessage>
                 </FormControl>
               )}
             </Field>
-          </Stack>
-          <Button
-            /*  disabled={!props.dirty}  */
-            mt={4}
-            disabled
-            colorScheme="teal"
-            isLoading={props.isSubmitting}
-            type="submit"
-          >
-            REGISTER
-          </Button>
-          {/*  <Button as={<Link />} to="/login" colorScheme="blue", variant='outline'>
+            <Button
+              /* isDisabled={!props.dirty} */
+              mt={4}
+              colorScheme="teal"
+              isLoading={props.isSubmitting}
+              type="submit"
+            >
+              REGISTER
+            </Button>
+            {/*  <Button as={<Link />} to="/login" colorScheme="blue", variant='outline'>
             LOG IN
           </Button> */}
+          </Stack>
         </Form>
       )}
     </Formik>
