@@ -13,10 +13,11 @@ export const fetchTransactions = createAsyncThunk(
   }
 );
 //
-const addTransaction = createAsyncThunk(
+export const addTransaction = createAsyncThunk(
   'transaction/addTransaction',
   async (transaction, { rejectWithValue }) => {
     try {
+      console.log(transaction);
       const data = await transactionAPI.postAddTransaction(transaction);
       return data;
     } catch (error) {

@@ -2,32 +2,38 @@ import {
   Button,
   FormControl,
   FormErrorMessage,
-  FormLabel,
   Input,
   Select,
   Stack,
-  Switch,
-  Text,
 } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
-import { fetchCategories } from 'redux/transaction/transactionOperations';
+import {
+  /*   addTransaction, */
+  fetchCategories,
+} from 'redux/transaction/transactionOperations';
 import { useEffect } from 'react';
-import { useState } from 'react';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import transactionSelectors from 'redux/transaction/transactionSelectors';
+import { MyCheckbox } from 'components/Switch/Switch';
+/* import time from 'service/date'; */
 const { getCategories } = transactionSelectors;
 
+/* const { date } = time;
+
+function makeDate(day, month, year) {
+  return `${year}/${month}/${day}`;
+} */
+
 let schema = yup.object().shape({
-  transactionDate: yup.string().required('This field is required'),
-  type: yup.string().required(),
+  transactionDate: yup.date().required('This field is required'),
+  type: yup.bool().required(),
   categoryId: yup.string(),
   comment: yup.string().max(50, 'Sorry, comment is too long'),
-  amount: yup.number().positive().required('This field is required'),
+  amount: yup.number().required('This field is required'),
 });
 
-export function AddTransactionForm() {
-  const [checked, setChecked] = useState(true);
+export function AddTransactionForm({ onClick }) {
   const dispatch = useDispatch();
   const categories = useSelector(getCategories);
 
@@ -39,44 +45,34 @@ export function AddTransactionForm() {
     <Formik
       initialValues={{
         transactionDate: '',
-        type: '',
+        type: true,
         categoryId: '',
         comment: '',
-        amount: 0,
+        amount: '',
       }}
       validationSchema={schema}
       onSubmit={(values, actions) => {
-        console.log(values);
+        /*         dispatch(
+          addTransaction({
+            ...values,
+            transactionDate: values.transactionDate.toJSON(),
+            categoryId: values.type ? values.categoryId : '',
+            type: values.type ? 'EXPENSE' : 'INCOME',
+          })
+        ); */
+        console.log({
+          ...values,
+          categoryId: values.type ? values.categoryId : '',
+          type: values.type ? 'EXPENSE' : 'INCOME',
+        });
         actions.setSubmitting(false);
       }}
     >
       {props => (
         <Form>
           <Stack spacing={10}>
-            <Field name="type">
-              {({ field, form }) => (
-                <FormControl isInvalid={form.errors.type && form.touched.type}>
-                  <Stack direction={['row']} spacing="5px">
-                    <Text>Income</Text>
-                    <Switch
-                      {...field}
-                      name="type"
-                      size="lg"
-                      id="type"
-                      isChecked={checked}
-                      value={checked ? 'EXPENSE' : 'INCOME'}
-                      onChange={() => {
-                        setChecked(ch => !ch);
-                      }}
-                    />
-                    <Text>Expense</Text>
-                  </Stack>
-                  <FormErrorMessage>{form.errors.type}</FormErrorMessage>
-                </FormControl>
-              )}
-            </Field>
-
-            {checked && (
+            <MyCheckbox name="type" checked={props.values.type} />
+            {props.values.type && (
               <Field name="categoryId">
                 {({ field, form }) => (
                   <FormControl
@@ -112,7 +108,7 @@ export function AddTransactionForm() {
                       textAlign="center"
                       fontWeight="600"
                       {...field}
-                      placeholder={'0.00'}
+                      placeholder="0.00"
                       variant="flushed"
                       type="number"
                     />
@@ -161,7 +157,7 @@ export function AddTransactionForm() {
             >
               ADD
             </Button>
-            <Button colorScheme="blue" variant="outline">
+            <Button colorScheme="blue" variant="outline" onClick={onClick}>
               CANCEL
             </Button>
           </Stack>

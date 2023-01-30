@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { modalIsOpen } from '../../redux/modal/modalSlice';
 
 import styled from '@emotion/styled';
+import { AddTransactionForm } from 'components/AddTransactionForm/AddTransactionForm';
 
 const Modal = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,9 @@ const Modal = () => {
 
   return ReactDOM.createPortal(
     <Overlay onClick={handleBackdrop}>
-      <ModalWindow>Modal Window</ModalWindow>
+      <ModalWindow>
+        <AddTransactionForm />
+      </ModalWindow>
     </Overlay>,
 
     document.body
