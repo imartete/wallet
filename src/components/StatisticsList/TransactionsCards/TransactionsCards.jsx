@@ -1,32 +1,60 @@
-import { ListItem, Text, UnorderedList } from '@chakra-ui/react';
+import css from './TransactionsCards.module.css';
 
 export const TransactionsCards = function ({ dataArr }) {
   return dataArr.map(item => (
-    <UnorderedList>
-      <ListItem key={item.id}>
-        <Text as="span">Date</Text>
-        <Text as="span">{item.transactionDate}</Text>
-      </ListItem>
-      <ListItem key={item.id}>
-        <Text as="span">Type</Text>
-        <Text as="span">{item.type}</Text>
-      </ListItem>
-      <ListItem key={item.id}>
-        <Text as="span">Category</Text>
-        <Text as="span">{item.categoryId}</Text>
-      </ListItem>
-      <ListItem key={item.id}>
-        <Text as="span">Comment</Text>
-        <Text as="span">{item.comment}</Text>
-      </ListItem>
-      <ListItem key={item.id}>
-        <Text as="span">Sum</Text>
-        <Text as="span">{item.amount}</Text>
-      </ListItem>
-      <ListItem key={item.id}>
-        <Text as="span">Balance</Text>
-        <Text as="span">{item.balanceAfter}</Text>
-      </ListItem>
-    </UnorderedList>
+    <ul
+      className={`${css.transactionList} ${
+        item.type === 'INCOME' ? css.income : css.expense
+      }`}
+    >
+      <li className={css.transactionItem} key={item.id}>
+        <span className={css.transactionName} as="span">
+          Date
+        </span>
+        <span className={css.transactionValue} as="span">
+          {item.transactionDate}
+        </span>
+      </li>
+      <li className={css.transactionItem} key={item.id}>
+        <span className={css.transactionName} as="span">
+          Type
+        </span>
+        <span className={css.transactionValue} as="span">
+          {item.type}
+        </span>
+      </li>
+      <li className={css.transactionItem} key={item.id}>
+        <span className={css.transactionName} as="span">
+          Category
+        </span>
+        <span className={css.transactionValue} as="span">
+          {item.categoryId}
+        </span>
+      </li>
+      <li className={css.transactionItem} key={item.id}>
+        <span className={css.transactionName} as="span">
+          Comment
+        </span>
+        <span className={css.transactionValue} as="span">
+          {item.comment}
+        </span>
+      </li>
+      <li className={css.transactionItem} key={item.id}>
+        <span className={css.transactionName} as="span">
+          Sum
+        </span>
+        <span className={`${css.transactionValue} ${css.balance}`} as="span">
+          {item.amount}
+        </span>
+      </li>
+      <li className={css.transactionItem} key={item.id}>
+        <span className={css.transactionName} as="span">
+          Balance
+        </span>
+        <span className={css.transactionValue} as="span">
+          {item.balanceAfter}
+        </span>
+      </li>
+    </ul>
   ));
 };

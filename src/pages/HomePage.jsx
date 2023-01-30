@@ -3,12 +3,12 @@ import { Transactions } from 'components/StatisticsList/Transactions';
 const dataArr = [
   {
     id: 'string',
-    transactionDate: 'string',
+    transactionDate: '05.11.19',
     type: 'INCOME',
     categoryId: 'string',
     userId: 'string',
-    comment: '',
-    amount: 0,
+    comment: 'ddddddddddd',
+    amount: 52,
     balanceAfter: 0,
   },
   {
@@ -18,13 +18,13 @@ const dataArr = [
     categoryId: 'string',
     userId: 'string',
     comment: 'string',
-    amount: 0,
+    amount: 10,
     balanceAfter: 0,
   },
 ];
 
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return <Transactions dataArr={dataArr} />;
 };
 
 export default HomePage;
