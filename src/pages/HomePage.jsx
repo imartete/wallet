@@ -1,4 +1,6 @@
+import OpenModalTransitionBtn from 'components/OpenModalTransitionBtn/OpenModalTransitionBtn';
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return <OpenModalTransitionBtn />;
 };
 export default HomePage;
