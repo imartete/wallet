@@ -33,7 +33,7 @@ let schema = yup.object().shape({
   amount: yup.number().required('This field is required'),
 });
 
-export function AddTransactionForm({ onClick }) {
+export const AddTransactionForm = ({ onClick }) => {
   const dispatch = useDispatch();
   const categories = useSelector(getCategories);
 
@@ -70,7 +70,7 @@ export function AddTransactionForm({ onClick }) {
     >
       {props => (
         <Form>
-          <Stack spacing={10}>
+          <Stack spacing={5}>
             <MyCheckbox name="type" checked={props.values.type} />
             {props.values.type && (
               <Field name="categoryId">
@@ -105,12 +105,12 @@ export function AddTransactionForm({ onClick }) {
                     isInvalid={form.errors.amount && form.touched.amount}
                   >
                     <Input
+                      {...field}
+                      type="number"
                       textAlign="center"
                       fontWeight="600"
-                      {...field}
                       placeholder="0.00"
                       variant="flushed"
-                      type="number"
                     />
                     <FormErrorMessage>{form.errors.amount}</FormErrorMessage>
                   </FormControl>
@@ -125,11 +125,12 @@ export function AddTransactionForm({ onClick }) {
                     }
                   >
                     <Input
-                      textAlign="center"
                       {...field}
+                      type="date"
+                      color="#BDBDBD"
+                      textAlign="center"
                       variant="flushed"
                       placeholder="Select Date and Time"
-                      type="date"
                     />
                     <FormErrorMessage>
                       {form.errors.transactionDate}
@@ -165,4 +166,4 @@ export function AddTransactionForm({ onClick }) {
       )}
     </Formik>
   );
-}
+};

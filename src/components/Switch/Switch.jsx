@@ -6,9 +6,15 @@ export function MyCheckbox({ children, ...props }) {
   const [field, meta] = useField({ ...props, type: 'checkbox' });
   return (
     <div>
-      <Stack direction={['row']} spacing="5px">
+      <Stack direction={['row']} spacing="5px" align="center" justify="center">
         <Text>Income</Text>
-        <Switch size="lg" {...field} {...props} defaultChecked={field.value} />
+        <Switch
+          size="lg"
+          {...field}
+          {...props}
+          defaultChecked={field.value}
+          colorScheme="pink"
+        />
         <Text>Expense</Text>
       </Stack>
       {children}
