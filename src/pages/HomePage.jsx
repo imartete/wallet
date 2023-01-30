@@ -1,4 +1,5 @@
 import { Transactions } from 'components/TransactionsTable/Transactions';
+import OpenModalTransitionBtn from 'components/OpenModalTransitionBtn/OpenModalTransitionBtn';
 
 const dataArr = [
   {
@@ -24,7 +25,6 @@ const dataArr = [
 ];
 
 const HomePage = () => {
-  return <Transactions dataArr={dataArr} />;
+  return <div>HomePage</div>;
 };
-
 export default HomePage;
