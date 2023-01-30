@@ -1,4 +1,4 @@
-import { Transactions } from 'components/StatisticsList/Transactions';
+import { Transactions } from 'components/TransactionsTable/Transactions';
 
 const dataArr = [
   {

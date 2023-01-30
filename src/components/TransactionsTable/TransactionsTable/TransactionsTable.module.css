@@ -1,0 +1,44 @@
+.transactionTable {
+  background-color: grey;
+  padding-top: 20px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+.transactionTableHead {
+  padding: 16px 20px;
+  border-radius: 30px;
+  background-color: #ffffff;
+}
+.transactionTitles {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+}
+.transactionsValues {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+.transactionsValuesSum {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+}
+.transactionsValues:not(:last-child) {
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+}
+
+.transactionList.income .balance {
+  color: #24cca7;
+}
+.transactionList.expense .balance {
+  color: #ff6596;
+}
+.transactionList.expense .transactionItem::before {
+  background: #ff6596;
+}
+
+.transactionList.income .transactionItem::before {
+  background: #24cca7;
+}
