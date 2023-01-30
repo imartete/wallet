@@ -2,6 +2,7 @@ import { UserForm } from 'components/UserForm/UserForm';
 import { Section } from 'components/Section/Section';
 
 import { StatisticsList } from 'components/StatisticsList/StatisticsList';
+import { DiagramTab } from 'components/DiagramTab/DiagramTab';
 
 const StatisticsPage = () => {
   return (
@@ -13,6 +14,7 @@ const StatisticsPage = () => {
       <Section title="Contacts"></Section>
       <Section title="Statistics">
         <>
+          <DiagramTab />
           <StatisticsList />
         </>
       </Section>
