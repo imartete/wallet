@@ -45,6 +45,7 @@ export const CatData = styled.td`
 
 export const SumData = styled.td`
   padding-right: 16px;
+
   text-align: right;
 `;
 
@@ -57,14 +58,14 @@ export const CatTotal = styled.th`
 
 export const ExpTotal = styled.th`
   padding-right: 16px;
-  width: 100%;
+  width: 35%;
   text-align: right;
   color: ${p => p.theme.colors.car};
 `;
 
 export const IncTotal = styled.th`
   padding-right: 16px;
-  width: 100%;
+  width: 35%;
   text-align: right;
   color: ${p => p.theme.colors.leisure};
 `;

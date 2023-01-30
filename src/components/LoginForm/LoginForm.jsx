@@ -8,6 +8,7 @@ import {
   InputRightElement,
   Stack,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import { useState } from 'react';
@@ -98,15 +99,27 @@ export function LoginForm() {
             <Button
               /*  isDisabled={!props.dirty}  */
               mt={4}
+              py="13px"
+              color="#FFFFFF"
+              bgColor="#24CCA7"
+              borderRadius="20px"
               colorScheme="teal"
               isLoading={props.isSubmitting}
               type="submit"
             >
               LOG IN
             </Button>
-            {/*  <Button as={<Link />} to="/register" colorScheme="blue", variant='outline'>
-            REGISTER
-          </Button> */}
+            <Link to="/sign-up">
+              <Button
+                py="13px"
+                w="100%"
+                borderRadius="20px"
+                colorScheme="blue"
+                variant="outline"
+              >
+                REGISTER
+              </Button>
+            </Link>
           </Stack>
         </Form>
       )}
