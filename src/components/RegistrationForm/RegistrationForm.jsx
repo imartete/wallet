@@ -7,7 +7,9 @@ import {
   InputLeftElement,
   InputRightElement,
   Stack,
+  Text,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import PasswordStrengthBar from 'react-password-strength-bar';
@@ -170,18 +172,32 @@ export function RegistrationForm() {
                 </FormControl>
               )}
             </Field>
+
             <Button
               /* isDisabled={!props.dirty} */
               mt={4}
-              colorScheme="teal"
+              py="13px"
+              color="#FFFFFF"
+              bgColor="#24CCA7"
+              borderRadius="20px"
               isLoading={props.isSubmitting}
               type="submit"
             >
-              REGISTER
+              <Text fontSize="18px" lineHeight="27px" letterSpacing="0.1em">
+                REGISTER
+              </Text>
             </Button>
-            {/*  <Button as={<Link />} to="/login" colorScheme="blue", variant='outline'>
-            LOG IN
-          </Button> */}
+            <Link to="/sign-in">
+              <Button
+                py="13px"
+                w="100%"
+                borderRadius="20px"
+                colorScheme="blue"
+                variant="outline"
+              >
+                LOG IN
+              </Button>
+            </Link>
           </Stack>
         </Form>
       )}

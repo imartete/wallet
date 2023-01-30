@@ -1,9 +1,14 @@
+import { useDispatch } from 'react-redux';
 import { useMedia } from 'components/Media/useMedia';
 import { Box, Text, Button, IconButton } from '@chakra-ui/react';
 import { SlLogout } from 'react-icons/sl';
+import operations from 'redux/auth/authOperations';
 
 const UserMenu = () => {
   const { isNotMobile } = useMedia();
+  const dispatch = useDispatch();
+  const { logOut } = operations;
+
   return (
     <>
       {isNotMobile ? (
@@ -18,6 +23,7 @@ const UserMenu = () => {
             colorScheme="white"
             aria-label="Logout button"
             size="18px"
+            onClick={() => dispatch(logOut())}
             leftIcon={
               <SlLogout
                 color="#BDBDBD"
@@ -48,6 +54,7 @@ const UserMenu = () => {
             colorScheme="white"
             aria-label="Logout button"
             size="18px"
+            onClick={() => dispatch(logOut())}
             icon={
               <SlLogout
                 color="#BDBDBD"
@@ -59,26 +66,6 @@ const UserMenu = () => {
         </Box>
       )}
     </>
-
-    // <Box display="flex" alignItems="center" gap="8px">
-    //   <Box>
-    //     <Text color="#BDBDBD" fontSize="18px" lineHeight="27px">
-    //       Name
-    //     </Text>
-    //   </Box>
-    //   <IconButton
-    //     colorScheme="white"
-    //     aria-label="Logout button"
-    //     size="18px"
-    //     icon={
-    //       <SlLogout
-    //         color="#BDBDBD"
-    //         size="18px"
-    //         style={{ transform: 'rotate(0.5turn)' }}
-    //       />
-    //     }
-    //   />
-    // </Box>
   );
 };
 
