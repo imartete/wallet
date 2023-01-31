@@ -2,7 +2,6 @@ import { useMedia } from 'components/Media/useMedia';
 import { Box, Text } from '@chakra-ui/react';
 import Container from 'components/Container/Container';
 import UserMenu from 'components/UserMenu/UserMenu';
-import Navigation from 'components/Navigation/Navigation';
 import CustomIcon from 'components/CustomIcon/CustomIcon';
 
 const Header = () => {
@@ -27,7 +26,6 @@ const Header = () => {
           </Box>
         ) : (
           <Box
-            mb="15px"
             py="15px"
             display="flex"
             alignItems="center"
@@ -42,7 +40,6 @@ const Header = () => {
             <UserMenu />
           </Box>
         )}
-        <Navigation />
       </Container>
     </header>
   );

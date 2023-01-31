@@ -3,6 +3,8 @@ import OpenModalTransitionBtn from 'components/OpenModalTransitionBtn/OpenModalT
 import { Transactions } from 'components/TransactionsTable/Transactions';
 import { useSelector } from 'react-redux';
 import { selectModal } from 'redux/modal/modalSelector';
+import { useMedia } from 'components/Media/useMedia';
+import Balance from 'components/Balance/Balance';
 
 const dataArr = [
   {
@@ -29,9 +31,11 @@ const dataArr = [
 
 const HomePage = () => {
   const isOpen = useSelector(selectModal);
+  const { isMobile } = useMedia();
   return (
     <>
       {isOpen && <Modal />}
+      {isMobile && <Balance />}
       <Transactions dataArr={dataArr} />
       <OpenModalTransitionBtn />
     </>

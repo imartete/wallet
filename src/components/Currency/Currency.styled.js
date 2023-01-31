@@ -7,7 +7,7 @@ export const CurrencyTableWrap = styled.div`
   width: 280px;
   height: 174px;
   padding: 11px 17px 20px 20px;
-
+  margin-top: 17px;
   border-radius: 30px;
   color: #e7eaf2;
   background: url(${CurrencyMob}) no-repeat bottom,
@@ -20,6 +20,7 @@ export const CurrencyTableWrap = styled.div`
   @media (min-width: 768px) {
     width: 336px;
     height: 182px;
+    margin-top: 0;
     background: url(${CurrencyTab}) no-repeat bottom,
       linear-gradient(
         to bottom,
@@ -30,6 +31,7 @@ export const CurrencyTableWrap = styled.div`
   @media (min-width: 1280px) {
     width: 393px;
     height: 347px;
+    margin-top: 0;
     background: url(${Currency}) no-repeat bottom,
       linear-gradient(
         to bottom,
