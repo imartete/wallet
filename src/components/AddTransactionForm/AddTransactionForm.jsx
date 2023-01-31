@@ -5,6 +5,7 @@ import {
   Input,
   Select,
   Stack,
+  useToast,
 } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import {
@@ -18,7 +19,7 @@ import transactionSelectors from 'redux/transaction/transactionSelectors';
 import { MyCheckbox } from 'components/Switch/Switch';
 import time from 'service/date';
 import { isModalAddTransaction } from 'redux/modal/modalSlice';
-const { getCategories } = transactionSelectors;
+const { getCategories, getError } = transactionSelectors;
 
 const { date } = time;
 
@@ -32,7 +33,9 @@ let schema = yup.object().shape({
 
 export const AddTransactionForm = () => {
   const dispatch = useDispatch();
+  const toast = useToast();
   const categories = useSelector(getCategories);
+  const error = useSelector(getError);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -53,6 +56,16 @@ export const AddTransactionForm = () => {
     actions.setSubmitting(false);
     actions.resetForm();
     dispatch(isModalAddTransaction(false));
+    if (!error) {
+      toast({
+        title: 'Transaction added.',
+        position: 'bottom-right',
+        variant: 'subtle',
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      });
+    }
   };
 
   return (

@@ -1,4 +1,7 @@
 import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
   Button,
   FormControl,
   FormErrorMessage,
@@ -11,11 +14,14 @@ import {
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MdMail, MdLock } from 'react-icons/md';
 import { IoMdEyeOff, IoMdEye } from 'react-icons/io';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from 'redux/auth/authOperations';
+import authSelectors from 'redux/auth/authSelectors';
+import { reduceError } from 'redux/auth/authSlice';
+const { getError } = authSelectors;
 
 let schema = yup.object().shape({
   email: yup.string().email('Invalid email').required('E-mail is required'),
@@ -29,7 +35,12 @@ let schema = yup.object().shape({
 export function LoginForm() {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
+  const error = useSelector(getError);
   const handleClick = () => setShow(!show);
+
+  useEffect(() => {
+    dispatch(reduceError());
+  }, [dispatch]);
 
   return (
     <Formik
@@ -45,7 +56,7 @@ export function LoginForm() {
     >
       {props => (
         <Form>
-          <Stack spacing={10}>
+          <Stack spacing={'30px'}>
             <Field name="email">
               {({ field, form }) => (
                 <FormControl
@@ -120,6 +131,12 @@ export function LoginForm() {
                 REGISTER
               </Button>
             </Link>
+            {error && (
+              <Alert status="error">
+                <AlertIcon />
+                <AlertTitle>Failed to log in.</AlertTitle>
+              </Alert>
+            )}
           </Stack>
         </Form>
       )}
