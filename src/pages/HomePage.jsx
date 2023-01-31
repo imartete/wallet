@@ -1,8 +1,8 @@
-import Modal from 'components/ModalAddTransaction/ModalAddTransaction';
+import ModalAddTransaction from 'components/ModalAddTransaction/ModalAddTransaction';
 import OpenModalTransitionBtn from 'components/OpenModalTransitionBtn/OpenModalTransitionBtn';
 import { Transactions } from 'components/TransactionsTable/Transactions';
 import { useSelector } from 'react-redux';
-import { selectModal } from 'redux/modal/modalSelector';
+import { useModals } from 'hooks/useModal';
 
 const dataArr = [
   {
@@ -28,10 +28,10 @@ const dataArr = [
 ];
 
 const HomePage = () => {
-  const isOpen = useSelector(selectModal);
+  const { isModalAdd } = useModals();
   return (
     <>
-      {isOpen && <Modal />}
+      {isModalAdd && <ModalAddTransaction />}
       <Transactions dataArr={dataArr} />
       <OpenModalTransitionBtn />
     </>

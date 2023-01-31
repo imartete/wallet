@@ -3,14 +3,18 @@ import { createSlice } from '@reduxjs/toolkit';
 export const modalSlice = createSlice({
   name: 'modal',
   initialState: {
-    value: false,
+    modalAddTransaction: false,
+    modalLogout: false,
   },
   reducers: {
-    modalIsOpen(state, { payload }) {
-      state.value = payload;
+    isModalAddTransaction(state, { payload }) {
+      state.modalAddTransaction = payload;
+    },
+    isModalLogout(state, { payload }) {
+      state.modalLogout = payload;
     },
   },
 });
 
-export const { modalIsOpen } = modalSlice.actions;
+export const { isModalAddTransaction, isModalLogout } = modalSlice.actions;
 export const modalReducer = modalSlice.reducer;
