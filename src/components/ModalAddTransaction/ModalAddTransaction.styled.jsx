@@ -12,13 +12,20 @@ export const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 1200;
   padding: 10px;
+  @media (max-width: 767px) {
+    padding: 0;
+  }
 `;
 
 export const ModalWindow = styled.div`
   position: relative;
+  width: 540px;
   background: white;
   border-radius: 5px;
-  width: 540px;
-  padding: 73px;
+  padding: 40px 64px;
   text-align: center;
+  @media (max-width: 767px) {
+    height: 100%;
+    padding: 20px;
+  }
 `;

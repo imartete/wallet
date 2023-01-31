@@ -7,7 +7,7 @@ export function MyCheckbox({ children, ...props }) {
   return (
     <div>
       <Stack direction={['row']} spacing="5px" align="center" justify="center">
-        <Text>Income</Text>
+        <Text color={field.value ? '#D9D9D9' : '#24CCA7'}>Income</Text>
         <Switch
           size="lg"
           {...field}
@@ -15,7 +15,7 @@ export function MyCheckbox({ children, ...props }) {
           defaultChecked={field.value}
           colorScheme="pink"
         />
-        <Text>Expense</Text>
+        <Text color={!field.value ? '#D9D9D9' : '#FF6596'}>Expense</Text>
       </Stack>
       {children}
       {meta.touched && meta.error ? (

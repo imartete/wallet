@@ -1,9 +1,9 @@
-import Modal from 'components/ModalAddTransaction/ModalAddTransaction';
+import ModalAddTransaction from 'components/ModalAddTransaction/ModalAddTransaction';
 import OpenModalTransitionBtn from 'components/OpenModalTransitionBtn/OpenModalTransitionBtn';
 import { Transactions } from 'components/TransactionsTable/Transactions';
-import { useSelector } from 'react-redux';
-import { selectModal } from 'redux/modal/modalSelector';
+
 import { useMedia } from 'components/Media/useMedia';
+import { useModals } from 'hooks/useModal';
 import Balance from 'components/Balance/Balance';
 
 const dataArr = [
@@ -30,11 +30,11 @@ const dataArr = [
 ];
 
 const HomePage = () => {
-  const isOpen = useSelector(selectModal);
   const { isMobile } = useMedia();
+  const { isModalAdd } = useModals();
   return (
     <>
-      {isOpen && <Modal />}
+      {isModalAdd && <ModalAddTransaction />}
       {isMobile && <Balance />}
       <Transactions dataArr={dataArr} />
       <OpenModalTransitionBtn />
