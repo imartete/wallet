@@ -69,7 +69,7 @@ export const AddTransactionForm = ({ onClick }) => {
       }}
     >
       {props => (
-        <Form>
+        <Form height="100%">
           <Stack spacing={5}>
             <MyCheckbox name="type" checked={props.values.type} />
             {props.values.type && (
@@ -86,7 +86,14 @@ export const AddTransactionForm = ({ onClick }) => {
                       variant="flushed"
                     >
                       {categories.map(category => (
-                        <option key={category.id} value={category.id}>
+                        <option
+                          key={category.id}
+                          value={category.id}
+                          style={{
+                            backdropFilter: 'blur(10px)',
+                            color: 'black',
+                          }}
+                        >
                           {category.name}
                         </option>
                       ))}
@@ -127,7 +134,7 @@ export const AddTransactionForm = ({ onClick }) => {
                     <Input
                       {...field}
                       type="date"
-                      color="#BDBDBD"
+                      color="black"
                       textAlign="center"
                       variant="flushed"
                       placeholder="Select Date and Time"
@@ -150,15 +157,26 @@ export const AddTransactionForm = ({ onClick }) => {
               )}
             </Field>
             <Button
+              py="13px"
+              color="#FFFFFF"
+              bgColor="#24CCA7"
+              borderRadius="20px"
+              colorScheme="teal"
+              type="submit"
               /* isDisabled={!props.dirty} */
               mt={4}
-              colorScheme="teal"
               isLoading={props.isSubmitting}
-              type="submit"
             >
               ADD
             </Button>
-            <Button colorScheme="blue" variant="outline" onClick={onClick}>
+            <Button
+              py="13px"
+              w="100%"
+              borderRadius="20px"
+              colorScheme="blue"
+              variant="outline"
+              onClick={onClick}
+            >
               CANCEL
             </Button>
           </Stack>
