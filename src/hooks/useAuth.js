@@ -17,6 +17,7 @@ export const useAuth = () => {
   const user = useSelector(authSelectors.getUser);
   const loading = useSelector(authSelectors.getLoading);
   const error = useSelector(authSelectors.getError);
+  const balance = useSelector(authSelectors.getBalance);
 
   return {
     isAuth,
@@ -24,6 +25,7 @@ export const useAuth = () => {
     user,
     error,
     loading,
+    balance,
   };
 };
 
