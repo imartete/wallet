@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import {
-  /*   addTransaction, */
+  addTransaction,
   fetchCategories,
 } from 'redux/transaction/transactionOperations';
 import { useEffect } from 'react';
@@ -41,6 +41,21 @@ export const AddTransactionForm = ({ onClick }) => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
+  // добавил функцию
+  const clickOnsubmit = (values, actions) => {
+    const newTransaction = {
+      ...values,
+      categoryId: values.type ? values.categoryId : '',
+      type: values.type ? 'EXPENSE' : 'INCOME',
+    };
+    dispatch(addTransaction(newTransaction));
+    actions.setSubmitting(false);
+  };
+    // добавил функцию
+    // диспатч работает при условии что все поля заполнены  (я тестировал когда
+    // вводил минусовое значение операции и заполнял все поля)
+    // 
+
   return (
     <Formik
       initialValues={{
@@ -60,12 +75,13 @@ export const AddTransactionForm = ({ onClick }) => {
             type: values.type ? 'EXPENSE' : 'INCOME',
           })
         ); */
+        clickOnsubmit(values, actions);
         console.log({
           ...values,
           categoryId: values.type ? values.categoryId : '',
           type: values.type ? 'EXPENSE' : 'INCOME',
         });
-        actions.setSubmitting(false);
+        // actions.setSubmitting(false);
       }}
     >
       {props => (

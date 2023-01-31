@@ -2,7 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import authOperations from './authOperations';
 
 const initialState = {
-  user: { username: null, email: null },
+  user: { id: '', username: '', email: '', balance: null },
   token: null,
   isAuth: false,
   error: null,
@@ -48,7 +48,7 @@ const authSlice = createSlice({
         state.isAuth = true;
       })
       .addCase(authOperations.logOut.fulfilled, state => {
-        state.user = { username: null, email: null };
+        state.user = { id: '', username: '', email: '', balance: null };
         state.token = null;
         state.isAuth = false;
       })

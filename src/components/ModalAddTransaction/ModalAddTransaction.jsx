@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
-import { modalIsOpen } from '../../redux/modal/modalSlice';
+import { isModalAddTransaction } from '../../redux/modal/modalSlice';
 import { AddTransactionForm } from 'components/AddTransactionForm/AddTransactionForm';
 import { ModalWindow, Overlay } from './ModalAddTransaction.styled';
 import { Box, CloseButton, Text } from '@chakra-ui/react';
@@ -9,14 +9,14 @@ import { useMedia } from 'components/Media/useMedia';
 import CustomIcon from 'components/CustomIcon/CustomIcon';
 import UserMenu from 'components/UserMenu/UserMenu';
 
-const Modal = () => {
+const ModalAddTransaction = () => {
   const dispatch = useDispatch();
   const { isMobile, isNotMobile } = useMedia();
 
   useEffect(() => {
     const onClickEscape = e => {
       if (e.code === 'Escape') {
-        dispatch(modalIsOpen(false));
+        dispatch(isModalAddTransaction(false));
       }
     };
     document.addEventListener('keydown', onClickEscape);
@@ -27,7 +27,7 @@ const Modal = () => {
 
   const handleBackdrop = event => {
     if (event.target === event.currentTarget) {
-      dispatch(modalIsOpen(false));
+      dispatch(isModalAddTransaction(false));
     }
   };
 
@@ -72,4 +72,4 @@ const Modal = () => {
   );
 };
 
-export default Modal;
+export default ModalAddTransaction;

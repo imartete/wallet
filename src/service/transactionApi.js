@@ -9,6 +9,7 @@ export async function getAllTransactions() {
 
 export async function postAddTransaction(newTransaction) {
   const { data } = await axios.post('/transactions', newTransaction);
+  console.log(data);
   return data;
 }
 
