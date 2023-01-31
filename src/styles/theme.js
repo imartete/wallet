@@ -10,6 +10,7 @@ const colors = {
   education: '#81E1FF', //skyblue
   leisure: '#24CCA7', //light green
   other: '#00AD84', //green
+  grey: '#cccc', //grey
 
   mainBrand: '#',
   secondaryBrand: '#',
@@ -59,7 +60,6 @@ const space = {
 
 const fonts = {
   main: '',
-  
 };
 
 const fontSizes = {};
