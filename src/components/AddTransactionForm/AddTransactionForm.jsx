@@ -30,7 +30,7 @@ let schema = yup.object().shape({
   amount: yup.number().required('Please insert an amount'),
 });
 
-export const AddTransactionForm = ({ onClick }) => {
+export const AddTransactionForm = () => {
   const dispatch = useDispatch();
   const categories = useSelector(getCategories);
 
@@ -39,7 +39,6 @@ export const AddTransactionForm = ({ onClick }) => {
   }, [dispatch]);
 
   const clickOnsubmit = (values, actions) => {
-    console.log(actions);
     const newTransaction = {
       ...values,
       amount: values.type ? -Math.abs(values.amount) : values.amount,
@@ -48,6 +47,8 @@ export const AddTransactionForm = ({ onClick }) => {
         : '063f1132-ba5d-42b4-951d-44011ca46262',
       type: values.type ? 'EXPENSE' : 'INCOME',
     };
+    if (values.type && values.categoryId === '')
+      newTransaction.categoryId = 'c9d9e447-1b83-4238-8712-edc77b18b739';
     dispatch(addTransaction(newTransaction));
     actions.setSubmitting(false);
     actions.resetForm();
@@ -59,7 +60,7 @@ export const AddTransactionForm = ({ onClick }) => {
       initialValues={{
         transactionDate: date.toISOString().split('T')[0],
         type: true,
-        categoryId: 'c9d9e447-1b83-4238-8712-edc77b18b739',
+        categoryId: '',
         comment: '',
         amount: '',
       }}
@@ -82,8 +83,8 @@ export const AddTransactionForm = ({ onClick }) => {
                   >
                     <Select
                       {...field}
-                      placeholder="Select a category"
                       variant="flushed"
+                      placeholder="Select a category"
                     >
                       {categories.map(category => (
                         <option
@@ -173,7 +174,7 @@ export const AddTransactionForm = ({ onClick }) => {
               borderRadius="20px"
               colorScheme="blue"
               variant="outline"
-              onClick={onClick}
+              onClick={() => dispatch(isModalAddTransaction(false))}
             >
               CANCEL
             </Button>
