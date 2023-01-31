@@ -1,5 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import authOperations from './authOperations';
+import transactionOperations from './../transaction/transactionOperations'
+
 
 const initialState = {
   user: { id: '', username: '', email: '', balance: null },
@@ -46,6 +48,9 @@ const authSlice = createSlice({
         state.user = payload.user;
         state.token = payload.token;
         state.isAuth = true;
+      })
+      .addCase(transactionOperations.addTransaction.fulfilled, (state, { payload }) => {
+        state.user.balance = payload.balanceAfter;
       })
       .addCase(authOperations.logOut.fulfilled, state => {
         state.user = { id: '', username: '', email: '', balance: null };
