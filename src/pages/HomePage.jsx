@@ -1,7 +1,7 @@
 import ModalAddTransaction from 'components/ModalAddTransaction/ModalAddTransaction';
 import OpenModalTransitionBtn from 'components/OpenModalTransitionBtn/OpenModalTransitionBtn';
 import { Transactions } from 'components/TransactionsTable/Transactions';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { useModals } from 'hooks/useModal';
 
 const dataArr = [

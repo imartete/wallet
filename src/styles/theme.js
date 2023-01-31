@@ -84,7 +84,11 @@ const space = {
 
 const fonts = {
   main: '',
+};
 
+const shadows = {
+  pink: '0px 1px 4px rgba(255,101,150, 0.8)',
+  green: '0px 1px 4px rgba(36,204,167, 0.8)',
 };
 
 const fontSizes = {};
