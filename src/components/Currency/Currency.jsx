@@ -53,7 +53,12 @@ const Currency = () => {
                 <TableHead>Sale</TableHead>
               </tr>
             </thead>
-            <td colspan="3">Sorry, too many requests, try again late...</td>
+            <tbody>
+              <tr>
+                <td colSpan="3">Sorry, too many requests, try again late...</td>
+              </tr>
+            </tbody>
+
             {/* <div>
               <p>Sorry, too many requests, try again late...</p>
             </div> */}

@@ -4,7 +4,7 @@ import OpenModalTransitionBtn from 'components/OpenModalTransitionBtn/OpenModalT
 
 const dataArr = [
   {
-    id: 'string',
+    id: 'string1',
     transactionDate: '05.11.19',
     type: 'INCOME',
     categoryId: 'string',
@@ -14,7 +14,7 @@ const dataArr = [
     balanceAfter: 0,
   },
   {
-    id: 'string1',
+    id: 'string2',
     transactionDate: 'string',
     type: 'EXPENSE',
     categoryId: 'string',

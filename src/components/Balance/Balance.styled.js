@@ -32,7 +32,7 @@ export const BalanceTitle = styled.h2`
   color: #a6a6a6;
 `;
 
-export const BalanceText = styled.h2`
+export const BalanceText = styled.h3`
   font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 600;
