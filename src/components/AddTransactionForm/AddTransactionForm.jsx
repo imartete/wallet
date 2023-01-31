@@ -16,21 +16,18 @@ import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import transactionSelectors from 'redux/transaction/transactionSelectors';
 import { MyCheckbox } from 'components/Switch/Switch';
-/* import time from 'service/date'; */
+import time from 'service/date';
+import { isModalAddTransaction } from 'redux/modal/modalSlice';
 const { getCategories } = transactionSelectors;
 
-/* const { date } = time;
-
-function makeDate(day, month, year) {
-  return `${year}/${month}/${day}`;
-} */
+const { date } = time;
 
 let schema = yup.object().shape({
-  transactionDate: yup.date().required('This field is required'),
+  transactionDate: yup.date().required('Please, selecta a date'),
   type: yup.bool().required(),
   categoryId: yup.string(),
   comment: yup.string().max(50, 'Sorry, comment is too long'),
-  amount: yup.number().required('This field is required'),
+  amount: yup.number().required('Please insert an amount'),
 });
 
 export const AddTransactionForm = ({ onClick }) => {
@@ -41,47 +38,34 @@ export const AddTransactionForm = ({ onClick }) => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  // добавил функцию
   const clickOnsubmit = (values, actions) => {
+    console.log(actions);
     const newTransaction = {
       ...values,
-      categoryId: values.type ? values.categoryId : '',
+      amount: values.type ? -Math.abs(values.amount) : values.amount,
+      categoryId: values.type
+        ? values.categoryId
+        : '063f1132-ba5d-42b4-951d-44011ca46262',
       type: values.type ? 'EXPENSE' : 'INCOME',
     };
     dispatch(addTransaction(newTransaction));
     actions.setSubmitting(false);
+    actions.resetForm();
+    dispatch(isModalAddTransaction(false));
   };
-  // добавил функцию
-  // диспатч работает при условии что все поля заполнены  (я тестировал когда
-  // вводил минусовое значение операции и заполнял все поля)
-  //
 
   return (
     <Formik
       initialValues={{
-        transactionDate: '',
+        transactionDate: date.toISOString().split('T')[0],
         type: true,
-        categoryId: '',
+        categoryId: 'c9d9e447-1b83-4238-8712-edc77b18b739',
         comment: '',
         amount: '',
       }}
       validationSchema={schema}
       onSubmit={(values, actions) => {
-        /*         dispatch(
-          addTransaction({
-            ...values,
-            transactionDate: values.transactionDate.toJSON(),
-            categoryId: values.type ? values.categoryId : '',
-            type: values.type ? 'EXPENSE' : 'INCOME',
-          })
-        ); */
         clickOnsubmit(values, actions);
-        console.log({
-          ...values,
-          categoryId: values.type ? values.categoryId : '',
-          type: values.type ? 'EXPENSE' : 'INCOME',
-        });
-        // actions.setSubmitting(false);
       }}
     >
       {props => (
@@ -153,7 +137,6 @@ export const AddTransactionForm = ({ onClick }) => {
                       color="black"
                       textAlign="center"
                       variant="flushed"
-                      placeholder="Select Date and Time"
                     />
                     <FormErrorMessage>
                       {form.errors.transactionDate}
@@ -179,7 +162,6 @@ export const AddTransactionForm = ({ onClick }) => {
               borderRadius="20px"
               colorScheme="teal"
               type="submit"
-              /* isDisabled={!props.dirty} */
               mt={4}
               isLoading={props.isSubmitting}
             >
