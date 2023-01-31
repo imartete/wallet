@@ -1,6 +1,6 @@
 export const switchBgChart = name => {
   switch (name) {
-    case 'Basic expenses':
+    case 'Main expenses':
       return '#FED057';
     case 'Products':
       return '#FFD8D0';

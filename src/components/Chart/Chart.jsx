@@ -1,7 +1,12 @@
 import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { Box, Text } from '@chakra-ui/react';
+import { switchBgChart } from '../../helpers/switchColorStatistic';
+import transactionSelectors from 'redux/transaction/transactionSelectors';
 
+import { useSelector } from 'react-redux';
+
+const { getTransactions } = transactionSelectors;
 ChartJS.register(ArcElement, Tooltip);
 
 const Chart = () => {

@@ -1,13 +1,15 @@
 import css from './TransactionsCards.module.css';
+import { nanoid } from 'nanoid';
 
 export const TransactionsCards = function ({ dataArr }) {
   return dataArr.map(item => (
     <ul
+      key={nanoid()}
       className={`${css.transactionList} ${
         item.type === 'INCOME' ? css.income : css.expense
       }`}
     >
-      <li className={css.transactionItem} key={item.id}>
+      <li className={css.transactionItem}>
         <span className={css.transactionName} as="span">
           Date
         </span>
@@ -15,7 +17,7 @@ export const TransactionsCards = function ({ dataArr }) {
           {item.transactionDate}
         </span>
       </li>
-      <li className={css.transactionItem} key={item.id}>
+      <li className={css.transactionItem}>
         <span className={css.transactionName} as="span">
           Type
         </span>
@@ -23,7 +25,7 @@ export const TransactionsCards = function ({ dataArr }) {
           {item.type}
         </span>
       </li>
-      <li className={css.transactionItem} key={item.id}>
+      <li className={css.transactionItem}>
         <span className={css.transactionName} as="span">
           Category
         </span>
@@ -31,7 +33,7 @@ export const TransactionsCards = function ({ dataArr }) {
           {item.categoryId}
         </span>
       </li>
-      <li className={css.transactionItem} key={item.id}>
+      <li className={css.transactionItem}>
         <span className={css.transactionName} as="span">
           Comment
         </span>
@@ -39,7 +41,7 @@ export const TransactionsCards = function ({ dataArr }) {
           {item.comment}
         </span>
       </li>
-      <li className={css.transactionItem} key={item.id}>
+      <li className={css.transactionItem}>
         <span className={css.transactionName} as="span">
           Sum
         </span>
@@ -47,7 +49,7 @@ export const TransactionsCards = function ({ dataArr }) {
           {item.amount}
         </span>
       </li>
-      <li className={css.transactionItem} key={item.id}>
+      <li className={css.transactionItem}>
         <span className={css.transactionName} as="span">
           Balance
         </span>
