@@ -4,20 +4,17 @@ export const BalanceWrap = styled.div`
   height: 80px;
   padding: 8px 40px 13px;
   width: 280px;
-  margin-top: 68px;
-  margin-bottom: 30px;
-
+  margin-bottom: 32px;
   background: #ffffff;
   border-radius: 30px;
 
   @media (min-width: 768px) {
     width: 334px;
-    margin-top: 134px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
   @media (min-width: 1280px) {
     width: 395px;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
   }
 `;
 

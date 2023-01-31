@@ -1,6 +1,30 @@
 import { extendTheme } from '@chakra-ui/react';
+import { switchAnatomy } from '@chakra-ui/anatomy';
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react';
 
 const colors = {
+  components: {
+    Switch: {
+      baseStyle: {
+        icon: {
+          color: 'white',
+        },
+        control: {
+          border: '1px',
+          borderColor: 'gray.300',
+          borderRadius: 'base',
+          _disabled: {
+            borderColor: 'gray.300',
+            bg: 'gray.200',
+          },
+        },
+        label: {
+          fontWeight: 'medium',
+          color: 'gray.900',
+        },
+      },
+    },
+  },
   expenses: '#FED057', //yellow
   products: '#FFD8D0', //light pink
   car: '#FD9498', //pink
@@ -62,7 +86,38 @@ const fonts = {
   main: '',
 };
 
+const shadows = {
+  pink: '0px 1px 4px rgba(255,101,150, 0.8)',
+  green: '0px 1px 4px rgba(36,204,167, 0.8)',
+};
+
 const fontSizes = {};
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(switchAnatomy.keys);
+
+const baseStyle = definePartsStyle({
+  // define the part you're going to style
+  container: {
+    // ...
+  },
+  thumb: {
+    size: 'xl',
+    bg: colors.leisure,
+    boxShadow: shadows.green,
+    _checked: {
+      bg: '#FF6596',
+      boxShadow: shadows.pink,
+    },
+  },
+  track: {
+    bg: 'white',
+    border: '1px',
+    borderColor: 'gray.200',
+  },
+});
+
+export const switchTheme = defineMultiStyleConfig({ baseStyle });
 
 export const theme = extendTheme({
   colors,
@@ -72,4 +127,9 @@ export const theme = extendTheme({
   fonts,
   fontSizes,
   sizes,
+  components: {
+    Switch: switchTheme,
+    Button: {},
+  },
+  shadows,
 });

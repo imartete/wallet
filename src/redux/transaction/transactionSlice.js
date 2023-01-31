@@ -6,7 +6,7 @@ const {
   addTransaction,
   deleteTransaction,
   updateTransaction,
-  getCategories,
+  fetchCategories,
   getSumTransactions,
 } = transactionOperations;
 
@@ -29,7 +29,7 @@ const extraActions = [
   addTransaction,
   deleteTransaction,
   updateTransaction,
-  getCategories,
+  fetchCategories,
   getSumTransactions,
 ];
 const getActions = type => extraActions.map(action => action[type]);
@@ -62,14 +62,12 @@ const transactionSlice = createSlice({
           transaction => transaction.id !== payload
         );
       })
-
-      .addCase(getCategories.fulfilled, (state, { payload }) => {
+      .addCase(fetchCategories.fulfilled, (state, { payload }) => {
         state.categories = payload;
       })
       .addCase(getSumTransactions.fulfilled, (state, { payload }) => {
         state.statistics = payload;
       })
-
       .addMatcher(isAnyOf(...getActions('pending')), pending)
       .addMatcher(isAnyOf(...getActions('rejected')), rejected)
       .addMatcher(isAnyOf(...getActions('fulfilled')), fulfilled);

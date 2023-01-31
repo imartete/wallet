@@ -1,6 +1,10 @@
-import Modal from 'components/ModalAddTransaction/ModalAddTransaction';
-import { Transactions } from 'components/TransactionsTable/Transactions';
+import ModalAddTransaction from 'components/ModalAddTransaction/ModalAddTransaction';
 import OpenModalTransitionBtn from 'components/OpenModalTransitionBtn/OpenModalTransitionBtn';
+import { Transactions } from 'components/TransactionsTable/Transactions';
+
+import { useMedia } from 'components/Media/useMedia';
+import { useModals } from 'hooks/useModal';
+import Balance from 'components/Balance/Balance';
 
 const dataArr = [
   {
@@ -26,8 +30,16 @@ const dataArr = [
 ];
 
 const HomePage = () => {
-  return <Transactions dataArr={dataArr} />;
-  <OpenModalTransitionBtn />;
+  const { isMobile } = useMedia();
+  const { isModalAdd } = useModals();
+  return (
+    <>
+      {isModalAdd && <ModalAddTransaction />}
+      {isMobile && <Balance />}
+      <Transactions dataArr={dataArr} />
+      <OpenModalTransitionBtn />
+    </>
+  );
 };
 
 export default HomePage;

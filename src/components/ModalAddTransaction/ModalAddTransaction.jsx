@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
+import { isModalAddTransaction } from '../../redux/modal/modalSlice';
+import { AddTransactionForm } from 'components/AddTransactionForm/AddTransactionForm';
+import { ModalWindow, Overlay } from './ModalAddTransaction.styled';
+import { Box, CloseButton, Text } from '@chakra-ui/react';
+import { useMedia } from 'components/Media/useMedia';
+import CustomIcon from 'components/CustomIcon/CustomIcon';
+import UserMenu from 'components/UserMenu/UserMenu';
 
-import { modalIsOpen } from '../../redux/modal/modalSlice';
-
-import styled from '@emotion/styled';
-
-const Modal = () => {
+const ModalAddTransaction = () => {
   const dispatch = useDispatch();
+  const { isMobile, isNotMobile } = useMedia();
 
   useEffect(() => {
     const onClickEscape = e => {
       if (e.code === 'Escape') {
-        dispatch(modalIsOpen(false));
+        dispatch(isModalAddTransaction(false));
       }
     };
     document.addEventListener('keydown', onClickEscape);
@@ -23,37 +27,49 @@ const Modal = () => {
 
   const handleBackdrop = event => {
     if (event.target === event.currentTarget) {
-      dispatch(modalIsOpen(false));
+      dispatch(isModalAddTransaction(false));
     }
   };
 
   return ReactDOM.createPortal(
     <Overlay onClick={handleBackdrop}>
-      <ModalWindow>Modal Window</ModalWindow>
+      <ModalWindow>
+        {isMobile && (
+          <Box
+            mb="20px"
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+            w="100%"
+          >
+            <Box display="flex" alignItems="center" gap="15.5px">
+              <CustomIcon name="icon-logo" color="currentColor" size="30px" />
+              <Text fontSize="24px" fontWeight="700">
+                Wallet
+              </Text>
+            </Box>
+            <UserMenu />
+          </Box>
+        )}
+        <Text mb="40px" fontSize={isMobile ? '2xl' : '3xl'}>
+          Add transaction
+        </Text>
+        {isNotMobile && (
+          <CloseButton
+            p="11"
+            pos="absolute"
+            top="5"
+            right="5"
+            size="md"
+            onClick={handleBackdrop}
+          />
+        )}
+        <AddTransactionForm onClick={handleBackdrop} />
+      </ModalWindow>
     </Overlay>,
 
     document.body
   );
 };
 
-export default Modal;
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1200;
-`;
-
-const ModalWindow = styled.div`
-  background: linear-gradient(-225deg, #5d9fff 0%, #b8dcff 48%, #6bbbff 100%);
-  border-radius: 5px;
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
-`;
+export default ModalAddTransaction;

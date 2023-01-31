@@ -1,10 +1,12 @@
 import { Navigate } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
+import { useMedia } from 'components/Media/useMedia';
 import Currency from 'components/Currency/Currency';
 
 const CurrencyPage = () => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  if (isMobile) return <Currency />;
+  const isMobile = useMedia();
+  if (isMobile) {
+    return <Currency />;
+  }
   return <Navigate to="/" />;
 };
 

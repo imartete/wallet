@@ -4,11 +4,13 @@ axios.defaults.baseURL = 'https://wallet.goit.ua/api';
 
 export async function getAllTransactions() {
   const { data } = await axios.get('/transactions');
+  console.log(`Все транзакции: ${data}`);
   return data;
 }
 
 export async function postAddTransaction(newTransaction) {
   const { data } = await axios.post('/transactions', newTransaction);
+  console.log(data);
   return data;
 }
 
