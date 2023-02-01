@@ -10,7 +10,6 @@ import {
 
 const Currency = () => {
   const [currency, setCurrency] = useState(null);
-  const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -18,8 +17,7 @@ const Currency = () => {
       try {
         setIsLoading(true);
         const data = await getCurrency();
-
-        const dataCurrency = data.filter(el => {
+        const dataCurrency = await data.filter(el => {
           if (el['currencyCodeA'] === 978 && el['currencyCodeB'] === 980) {
             return el;
           }
@@ -30,8 +28,8 @@ const Currency = () => {
         });
 
         setCurrency(dataCurrency);
-      } catch {
-        setError(true);
+      } catch (error) {
+        console.log(error.message);
       } finally {
         setIsLoading(false);
       }
@@ -42,43 +40,24 @@ const Currency = () => {
   return (
     <>
       {isLoading && <Loader />}
-
-      {error && (
-        <CurrencyTableWrap>
-          <CurrencyTable>
-            <thead>
+      <CurrencyTableWrap>
+        <CurrencyTable>
+          <thead>
+            <tr>
+              <TableHead>Currency</TableHead>
+              <TableHead>Purchase</TableHead>
+              <TableHead>Sale</TableHead>
+            </tr>
+          </thead>
+          <tbody>
+            {!currency ? (
               <tr>
-                <TableHead>Currency</TableHead>
-                <TableHead>Purchase</TableHead>
-                <TableHead>Sale</TableHead>
+                <td colSpan="3">
+                  Sorry, too many requests, try again later...
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colSpan="3">Sorry, too many requests, try again late...</td>
-              </tr>
-            </tbody>
-
-            {/* <div>
-              <p>Sorry, too many requests, try again late...</p>
-            </div> */}
-          </CurrencyTable>
-        </CurrencyTableWrap>
-      )}
-
-      {currency && (
-        <CurrencyTableWrap>
-          <CurrencyTable>
-            <thead>
-              <tr>
-                <TableHead>Currency</TableHead>
-                <TableHead>Purchase</TableHead>
-                <TableHead>Sale</TableHead>
-              </tr>
-            </thead>
-
-            <tbody>
-              {currency.map(({ currencyCodeA, rateBuy, rateSell }) => {
+            ) : (
+              currency.map(({ currencyCodeA, rateBuy, rateSell }) => {
                 const codeCurrency = currencyCodeA === 978 ? 'EUR' : 'USD';
                 const rateBuyCurrency = Number(rateBuy).toFixed(2);
                 const rateSellCurrency = Number(rateSell).toFixed(2);
@@ -89,11 +68,11 @@ const Currency = () => {
                     <TableData>{rateSellCurrency}</TableData>
                   </tr>
                 );
-              })}
-            </tbody>
-          </CurrencyTable>
-        </CurrencyTableWrap>
-      )}
+              })
+            )}
+          </tbody>
+        </CurrencyTable>
+      </CurrencyTableWrap>
     </>
   );
 };
