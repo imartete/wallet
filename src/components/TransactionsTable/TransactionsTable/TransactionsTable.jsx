@@ -1,14 +1,14 @@
-import { Button } from '@chakra-ui/button';
+// import { Button } from '@chakra-ui/button';
 import css from './TransactionsTable.module.css';
-import { useDispatch } from 'react-redux';
-import { deleteTransaction } from 'redux/transaction/transactionOperations';
-import { MinusIcon } from '@chakra-ui/icons';
+// import { useDispatch } from 'react-redux';
+// import { deleteTransaction } from 'redux/transaction/transactionOperations';
+// import { MinusIcon } from '@chakra-ui/icons';
 
 import { numberNormalize } from 'helpers/numberNormalize';
 
 export const TransactionsTable = function ({ dataArr }) {
   // удаление транзакции
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <section className={css.transactionSection}>
@@ -38,8 +38,8 @@ export const TransactionsTable = function ({ dataArr }) {
               <td className={css.transactionsValues}>
                 {numberNormalize(item.balanceAfter)}
               </td>
-              <div className={css.blockButton}>
-                <Button
+              {/* <div className={css.blockButton}> */}
+              {/* <Button
                   borderRadius="50"
                   backgroundColor="#24CCA7"
                   _hover="#24CCA7"
@@ -48,8 +48,8 @@ export const TransactionsTable = function ({ dataArr }) {
                   onClick={() => dispatch(deleteTransaction(item.id))}
                 >
                   <MinusIcon boxSize="20px" color="#FFFFFF" />
-                </Button>
-              </div>
+                </Button> */}
+              {/* </div> */}
             </tr>
           ))}
         </tbody>
