@@ -5,6 +5,7 @@ import { Transactions } from 'components/TransactionsTable/Transactions';
 import { useMedia } from 'components/Media/useMedia';
 import { useModals } from 'hooks/useModal';
 import Balance from 'components/Balance/Balance';
+import ModalLogout from 'components/ModalLogout/ModalLogout';
 
 const dataArr = [
   {
@@ -31,10 +32,11 @@ const dataArr = [
 
 const HomePage = () => {
   const { isMobile } = useMedia();
-  const { isModalAdd } = useModals();
+  const { isModalAdd, isModalLogout } = useModals();
   return (
     <>
       {isModalAdd && <ModalAddTransaction />}
+      {isModalLogout && <ModalLogout />}
       {isMobile && <Balance />}
       <Transactions dataArr={dataArr} />
       <OpenModalTransitionBtn />
