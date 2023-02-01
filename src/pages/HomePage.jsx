@@ -13,7 +13,7 @@ import {
   fetchTransactions,
 } from 'redux/transaction/transactionOperations';
 
-const dataArr = [
+/* const dataArr = [
   {
     id: 'string1',
     transactionDate: '05.11.19',
@@ -34,7 +34,7 @@ const dataArr = [
     amount: 10,
     balanceAfter: 0,
   },
-];
+]; */
 
 const HomePage = () => {
   // запрос на получение всех транзакций
