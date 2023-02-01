@@ -28,9 +28,7 @@ export const TransactionsTable = function ({ dataArr }) {
           {dataArr.map(item => (
             <tr className={css.transactionBodyLine}>
               <td className={css.transactionsValues}>{item.transactionDate}</td>
-              <td className={css.transactionsValues}>
-                {item.type === 'INCOME' ? '+' : '-'}
-              </td>
+              <td className={css.transactionsValues}>{item.type}</td>
               {/* <td className={css.transactionsValues}>{item.categoryId}</td> */}
               <td className={css.transactionsValues}>{item.category}</td>
               <td className={css.transactionsValues}>{item.comment}</td>
