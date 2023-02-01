@@ -18,7 +18,17 @@ export const useAuth = () => {
   const loading = useSelector(authSelectors.getLoading);
   const error = useSelector(authSelectors.getError);
   const balance1 = useSelector(authSelectors.getBalance);
-  const balance = balance1 ? balance1.toFixed(2) : balance1;
+  let balance;
+  if (balance1) {
+    const temp = balance1.toFixed(2);
+    const numberAfter = temp.slice(temp.length - 2, temp.length);
+    let numberBefore = temp.slice(0, temp.length - 3);
+    numberBefore = parseInt(numberBefore);
+    balance =
+      numberBefore.toLocaleString('EN-en').replaceAll(',', ' ') +
+      '.' +
+      numberAfter;
+  }
   return {
     isAuth,
     isRefreshing,
