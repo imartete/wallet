@@ -40,47 +40,50 @@ const SignInPage = () => {
         bgPosition="-140px 680px"
         bgColor="#E5E5E5"
       >
-        <Container
-          pt="60px"
-          pb="196px"
-          h="100%"
+        <Box
           bgImage={pinkEllipse}
           bgSize="628px 547px"
           bgRepeat="no-repeat"
           bgPosition="420px -130px"
         >
-          <Box
-            pb="50px"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            gap="51px"
-          >
-            <Box w="248px">
-              <Image src={MainImg} alt="Main_Image" />
-            </Box>
-            <Text fontSize="30px" lineHeight="45px">
-              Finance App
-            </Text>
-          </Box>
-          <Box mx="auto" w="533px" bgColor="#FFFFFF" borderRadius="20px">
-            <Box pt="40px" pr="58.5px" pb="66px" pl="65px">
-              <Box
-                pb="60px"
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                gap="15.5px"
-              >
-                <CustomIcon name="icon-logo" color="currentColor" size="40px" />
-                <Text fontSize="30px" lineHeight="45px" fontWeight="700">
-                  Wallet
-                </Text>
+          <Container pt="60px" pb="196px" h="100%">
+            <Box
+              pb="50px"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              gap="51px"
+            >
+              <Box w="248px">
+                <Image src={MainImg} alt="Main_Image" />
               </Box>
-              <LoginForm />
+              <Text fontSize="30px" lineHeight="45px">
+                Finance App
+              </Text>
             </Box>
-          </Box>
-        </Container>
+            <Box mx="auto" w="533px" bgColor="#FFFFFF" borderRadius="20px">
+              <Box pt="40px" pr="58.5px" pb="66px" pl="65px">
+                <Box
+                  pb="60px"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  gap="15.5px"
+                >
+                  <CustomIcon
+                    name="icon-logo"
+                    color="currentColor"
+                    size="40px"
+                  />
+                  <Text fontSize="30px" lineHeight="45px" fontWeight="700">
+                    Wallet
+                  </Text>
+                </Box>
+                <LoginForm />
+              </Box>
+            </Box>
+          </Container>
+        </Box>
       </Box>
     );
   }
@@ -91,11 +94,11 @@ const SignInPage = () => {
         display="flex"
         justifyContent="center"
         alignItems="center"
+        bgColor="#E5E5E5"
         bgImage={purpleEllipse}
         bgSize="628px 547px"
         bgRepeat="no-repeat"
         bgPosition="-135px 355px"
-        bgColor="#E5E5E5"
       >
         <Box
           pt="150px"
@@ -112,21 +115,21 @@ const SignInPage = () => {
             Finance App
           </Text>
         </Box>
-
         <Box
           py="136px"
           pr="91px"
           pl="116px"
+          w="60%"
           h="100%"
           display="flex"
           justifyContent="center"
           alignItems="center"
           gap="51px"
-          bgColor="rgba(255, 255, 255, 0.4)"
           bgImage={pinkEllipse}
           bgSize="628px 547px"
           bgRepeat="no-repeat"
-          bgPosition="220px -140px"
+          bgPosition="200% -140px"
+          bgColor="rgba(255, 255, 255, 0.4)"
         >
           <Box mx="auto" w="533px" bgColor="#FFFFFF" borderRadius="20px">
             <Box pt="40px" pr="58.5px" pb="66px" pl="65px">
