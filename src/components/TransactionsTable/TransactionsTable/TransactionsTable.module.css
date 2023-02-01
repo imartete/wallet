@@ -60,3 +60,7 @@
   composes: transactionsValuesSum;
   color: #ff6596;
 }
+
+.blockButton {
+  padding: 16px 20px;
+}
