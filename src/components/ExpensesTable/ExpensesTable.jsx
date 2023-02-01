@@ -12,6 +12,7 @@ import {
 const ExpensesTable = ({ children }) => {
   const { getStatistics } = transactionSelectors;
   const statistics = useSelector(getStatistics);
+  // console.log(statistics);
 
   if (!statistics) {
     return;
