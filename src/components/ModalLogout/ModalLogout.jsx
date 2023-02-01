@@ -4,8 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Box, Button, Text } from '@chakra-ui/react';
 import { isModalLogout } from '../../redux/modal/modalSlice';
 import authOperations from 'redux/auth/authOperations';
-
-import styled from '@emotion/styled';
+import { ModalWindowLogOut, OverlayLogOut } from './ModalLogout.styled';
 
 const ModalLogout = () => {
   const dispatch = useDispatch();
@@ -35,8 +34,8 @@ const ModalLogout = () => {
   };
 
   return ReactDOM.createPortal(
-    <Overlay onClick={handleBackdrop}>
-      <ModalWindow>
+    <OverlayLogOut onClick={handleBackdrop}>
+      <ModalWindowLogOut>
         <Box
           padding="50px"
           display="flex"
@@ -57,29 +56,11 @@ const ModalLogout = () => {
             </Button>
           </Box>
         </Box>
-      </ModalWindow>
-    </Overlay>,
+      </ModalWindowLogOut>
+    </OverlayLogOut>,
 
     document.body
   );
 };
 
 export default ModalLogout;
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1200;
-`;
-
-const ModalWindow = styled.div`
-  background: linear-gradient(-225deg, #5d9fff 0%, #b8dcff 48%, #6bbbff 100%);
-  border-radius: 5px;
-`;
