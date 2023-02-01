@@ -13,11 +13,12 @@ export const Filter = () => {
   const [year, setYear] = useState(date.getFullYear());
   const dispatch = useDispatch();
 
-  const monthsCopy = [...months];
-  const ordered = [...monthsCopy.splice(month, month), ...monthsCopy];
+  /* const monthsCopy = [...months];
+  const ordered = [...monthsCopy.splice(month), ...monthsCopy]; */
+  const currentMonthObj = months.find(item => item.num === parseInt(month));
+  const ordered = [currentMonthObj, ...months];
 
   useEffect(() => {
-    console.log(parseInt(month) + 1, year);
     dispatch(
       getSumTransactions({
         month: parseInt(month) + 1,
@@ -61,9 +62,13 @@ export const Filter = () => {
         bgColor="#FFFFFF"
         onChange={handleChange}
       >
-        {ordered.map(item => {
+        {months.map(item => {
           return (
-            <option key={item.num} value={item.num}>
+            <option
+              key={months.indexOf(item)}
+              value={item.num}
+              selected={item.num === month}
+            >
               {item.name}
             </option>
           );
