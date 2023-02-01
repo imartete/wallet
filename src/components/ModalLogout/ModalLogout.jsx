@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
-import { Button } from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
 import { isModalLogout } from '../../redux/modal/modalSlice';
 import authOperations from 'redux/auth/authOperations';
 
@@ -37,15 +37,26 @@ const ModalLogout = () => {
   return ReactDOM.createPortal(
     <Overlay onClick={handleBackdrop}>
       <ModalWindow>
-        <Button borderRightRadius="0" onClick={() => modalCloseLogOut()}>
-          Yes
-        </Button>
-        <Button
-          borderRightRadius="0"
-          onClick={() => dispatch(isModalLogout(false))}
+        <Box
+          padding="50px"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
         >
-          No
-        </Button>
+          <Text>Do you want to keep your wallet?</Text>
+          <Box>
+            <Button borderRightRadius="0" onClick={() => modalCloseLogOut()}>
+              Yes
+            </Button>
+            <Button
+              borderRightRadius="0"
+              onClick={() => dispatch(isModalLogout(false))}
+            >
+              No
+            </Button>
+          </Box>
+        </Box>
       </ModalWindow>
     </Overlay>,
 
@@ -71,6 +82,4 @@ const Overlay = styled.div`
 const ModalWindow = styled.div`
   background: linear-gradient(-225deg, #5d9fff 0%, #b8dcff 48%, #6bbbff 100%);
   border-radius: 5px;
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
 `;

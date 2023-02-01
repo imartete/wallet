@@ -5,31 +5,52 @@ import { useMedia } from 'components/Media/useMedia';
 import { useModals } from 'hooks/useModal';
 import Balance from 'components/Balance/Balance';
 import ModalLogout from 'components/ModalLogout/ModalLogout';
-
-const dataArr = [
-  {
-    id: 'string1',
-    transactionDate: '05.11.19',
-    type: 'INCOME',
-    categoryId: 'string',
-    userId: 'string',
-    comment: 'ddddddddddd',
-    amount: 52,
-    balanceAfter: 0,
-  },
-  {
-    id: 'string2',
-    transactionDate: 'string',
-    type: 'EXPENSE',
-    categoryId: 'string',
-    userId: 'string',
-    comment: 'string',
-    amount: 10,
-    balanceAfter: 0,
-  },
-];
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import {
+  fetchCategories,
+  fetchTransactions,
+} from 'redux/transaction/transactionOperations';
+import { useTransactions } from 'hooks/useTransactions';
 
 const HomePage = () => {
+  // запрос на получение всех транзакций
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTransactions());
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
+  // получение массива транзакций со стейта
+  const { transactions, categories } = useTransactions();
+  console.log(transactions);
+  // Добавление наименования транзакции в новый массив транзакций
+  let newTransactions;
+  const toChangeTransaction = (transactions, categories) => {
+    newTransactions = [];
+    for (let i = 0; i < transactions.length; i += 1) {
+      for (let j = 0; j < categories.length; j += 1) {
+        if (categories[j].id === transactions[i].categoryId) {
+          newTransactions[i] = {
+            ...transactions[i],
+            category: categories[j].name,
+          };
+        }
+      }
+      newTransactions[i].type =
+        newTransactions[i].type === 'INCOME' ? '+' : '-';
+      newTransactions[i].transactionDate = newTransactions[i].transactionDate
+        .split('-')
+        .reverse()
+        .join('.');
+    }
+  };
+
+  if (transactions.length && categories.length) {
+    toChangeTransaction(transactions, categories);
+  }
+
   const { isMobile } = useMedia();
   const { isModalAdd, isModalLogout } = useModals();
   return (
@@ -37,7 +58,7 @@ const HomePage = () => {
       {isModalAdd && <ModalAddTransaction />}
       {isModalLogout && <ModalLogout />}
       {isMobile && <Balance />}
-      <Transactions dataArr={dataArr} />
+      {newTransactions && <Transactions dataArr={newTransactions} />}
       <OpenModalTransitionBtn />
     </>
   );
