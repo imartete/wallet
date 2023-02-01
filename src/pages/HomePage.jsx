@@ -5,6 +5,13 @@ import { useMedia } from 'components/Media/useMedia';
 import { useModals } from 'hooks/useModal';
 import Balance from 'components/Balance/Balance';
 import ModalLogout from 'components/ModalLogout/ModalLogout';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useTransactions } from 'hooks/useTransactions';
+import {
+  fetchCategories,
+  fetchTransactions,
+} from 'redux/transaction/transactionOperations';
 const dataArr = [
   {
     id: 'string1',
@@ -25,8 +32,8 @@ const dataArr = [
     comment: 'string',
     amount: 10,
     balanceAfter: 0,
-  },
-];
+  },];
+
 const HomePage = () => {
   const { isMobile } = useMedia();
   const { isModalAdd, isModalLogout } = useModals();
