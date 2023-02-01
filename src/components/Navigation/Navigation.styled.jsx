@@ -10,6 +10,7 @@ export const NavLinkStyled = styled(NavLink)`
   &.active {
     color: ${p => p.theme.colors.household};
     font-weight: 700;
+    font-family: Poppins, sans-serif;
   }
 `;
 
