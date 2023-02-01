@@ -18,7 +18,11 @@ const Header = () => {
           >
             <Box display="flex" alignItems="center" gap="20px">
               <CustomIcon name="icon-logo" color="currentColor" size="40px" />
-              <Text fontSize="30px" fontWeight="700">
+              <Text
+                fontSize="30px"
+                fontWeight="700"
+                fontFamily="Poppins, sans-serif"
+              >
                 Wallet
               </Text>
             </Box>
@@ -33,7 +37,11 @@ const Header = () => {
           >
             <Box display="flex" alignItems="center" gap="15.5px">
               <CustomIcon name="icon-logo" color="currentColor" size="30px" />
-              <Text fontSize="24px" fontWeight="700">
+              <Text
+                fontSize="24px"
+                fontWeight="700"
+                fontFamily="Poppins, sans-serif"
+              >
                 Wallet
               </Text>
             </Box>

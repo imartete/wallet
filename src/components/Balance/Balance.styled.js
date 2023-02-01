@@ -38,6 +38,5 @@ export const BalanceText = styled.h3`
   display: flex;
   align-items: center;
   margin: 0;
-
   color: #000000;
 `;
