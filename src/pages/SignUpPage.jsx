@@ -39,46 +39,50 @@ const SignUpPage = () => {
         bgPosition="-140px 680px"
         bgColor="#E5E5E5"
       >
-        <Container
-          py="60px"
-          h="100%"
+        <Box
           bgImage={pinkEllipse}
           bgSize="628px 547px"
           bgRepeat="no-repeat"
           bgPosition="420px -130px"
         >
-          <Box
-            pb="50px"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            gap="51px"
-          >
-            <Box w="248px">
-              <Image src={MainImg} alt="Main_Image" />
-            </Box>
-            <Text fontSize="30px" lineHeight="45px">
-              Finance App
-            </Text>
-          </Box>
-          <Box mx="auto" w="533px" bgColor="#FFFFFF" borderRadius="20px">
-            <Box pt="40px" pr="58.5px" pb="66px" pl="65px">
-              <Box
-                pb="60px"
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                gap="15.5px"
-              >
-                <CustomIcon name="icon-logo" color="currentColor" size="40px" />
-                <Text fontSize="30px" lineHeight="45px" fontWeight="700">
-                  Wallet
-                </Text>
+          <Container py="60px" h="100%">
+            <Box
+              pb="50px"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              gap="51px"
+            >
+              <Box w="248px">
+                <Image src={MainImg} alt="Main_Image" />
               </Box>
-              <RegistrationForm />
+              <Text fontSize="30px" lineHeight="45px">
+                Finance App
+              </Text>
             </Box>
-          </Box>
-        </Container>
+            <Box mx="auto" w="533px" bgColor="#FFFFFF" borderRadius="20px">
+              <Box pt="40px" pr="58.5px" pb="66px" pl="65px">
+                <Box
+                  pb="60px"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  gap="15.5px"
+                >
+                  <CustomIcon
+                    name="icon-logo"
+                    color="currentColor"
+                    size="40px"
+                  />
+                  <Text fontSize="30px" lineHeight="45px" fontWeight="700">
+                    Wallet
+                  </Text>
+                </Box>
+                <RegistrationForm />
+              </Box>
+            </Box>
+          </Container>
+        </Box>
       </Box>
     );
   }
@@ -115,6 +119,7 @@ const SignUpPage = () => {
           py="52px"
           pr="91px"
           pl="107px"
+          w="60%"
           h="100%"
           display="flex"
           justifyContent="center"
@@ -124,7 +129,7 @@ const SignUpPage = () => {
           bgImage={pinkEllipse}
           bgSize="628px 547px"
           bgRepeat="no-repeat"
-          bgPosition="220px -140px"
+          bgPosition="200% -140px"
         >
           <Box mx="auto" w="533px" bgColor="#FFFFFF" borderRadius="20px">
             <Box pt="40px" pr="58.5px" pb="66px" pl="65px">
