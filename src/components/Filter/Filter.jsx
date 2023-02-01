@@ -13,25 +13,18 @@ export const Filter = () => {
   const [year, setYear] = useState(date.getFullYear());
   const dispatch = useDispatch();
 
-  /* const monthsCopy = [...months];
-  const ordered = [...monthsCopy.splice(month), ...monthsCopy]; */
-  const currentMonthObj = months.find(item => item.num === parseInt(month));
-  const ordered = [currentMonthObj, ...months];
-
   useEffect(() => {
     dispatch(
       getSumTransactions({
-        month: parseInt(month) + 1,
+        month: month + 1,
         year,
       })
     );
   }, [dispatch, month, year]);
 
-  console.log(month, year);
-
   const handleChange = event => {
-    if (event.target.id === 'month') setMonth(event.target.value);
-    if (event.target.id === 'year') setYear(event.target.value);
+    if (event.target.id === 'month') setMonth(parseInt(event.target.value));
+    if (event.target.id === 'year') setYear(parseInt(event.target.value));
   };
 
   let spacing = '';
@@ -61,14 +54,11 @@ export const Filter = () => {
         borderRadius="30px"
         bgColor="#FFFFFF"
         onChange={handleChange}
+        defaultValue={month}
       >
-        {months.map(item => {
+        {months.map((item, index) => {
           return (
-            <option
-              key={months.indexOf(item)}
-              value={item.num}
-              selected={item.num === month}
-            >
+            <option key={index} value={item.num}>
               {item.name}
             </option>
           );
