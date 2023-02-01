@@ -61,10 +61,10 @@ const ModalAddTransaction = () => {
             top="5"
             right="5"
             size="md"
-            onClick={handleBackdrop}
+            onClick={() => dispatch(isModalAddTransaction(false))}
           />
         )}
-        <AddTransactionForm onClick={handleBackdrop} />
+        <AddTransactionForm />
       </ModalWindow>
     </Overlay>,
 
