@@ -7,13 +7,13 @@ import { MinusIcon } from '@chakra-ui/icons';
 export const TransactionsTable = function ({ dataArr }) {
   // удаление транзакции
   const dispatch = useDispatch();
-  const normalize = num => {
-    return num
-      .toFixed(2)
-      .toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-      .replace('-', '');
-  };
+  // const normalize = num => {
+  //   return num
+  //     .toFixed(2)
+  //     .toString()
+  //     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+  //     .replace('-', '');
+  // };
   return (
     <section className={css.transactionSection}>
       <table className={css.transactionTable}>
