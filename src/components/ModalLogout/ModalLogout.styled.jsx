@@ -18,6 +18,6 @@ export const ModalWindowLogOut = styled.div`
   position: relative;
   border-radius: 5px;
   background-color: #ffffff;
-  padding: 20px 40px 20px 40px;
+  padding: 10px 20px 10px 20px;
   text-align: center;
 `;
