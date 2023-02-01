@@ -30,7 +30,8 @@ export const TransactionsCards = function ({ dataArr }) {
           Category
         </span>
         <span className={css.transactionValue} as="span">
-          {item.categoryId}
+          {/* {item.categoryId} */}
+          {item.category}
         </span>
       </li>
       <li className={css.transactionItem}>
