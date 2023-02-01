@@ -6,6 +6,7 @@ import { ImStop2 } from 'react-icons/im';
 const ExpensesData = () => {
   const statistics = useSelector(transactionSelectors.getStatistics);
   const { categoriesSummary } = statistics;
+  // console.log(categoriesSummary);
 
   if (categoriesSummary.length) {
     return categoriesSummary.map(category => {
