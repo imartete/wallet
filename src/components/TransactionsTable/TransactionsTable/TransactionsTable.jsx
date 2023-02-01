@@ -7,7 +7,13 @@ import { MinusIcon } from '@chakra-ui/icons';
 export const TransactionsTable = function ({ dataArr }) {
   // удаление транзакции
   const dispatch = useDispatch();
-
+  const normalize = num => {
+    return num
+      .toFixed(2)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+      .replace('-', '');
+  };
   return (
     <section className={css.transactionSection}>
       <table className={css.transactionTable}>
@@ -26,7 +32,9 @@ export const TransactionsTable = function ({ dataArr }) {
           {dataArr.map(item => (
             <tr className={css.transactionBodyLine}>
               <td className={css.transactionsValues}>{item.transactionDate}</td>
-              <td className={css.transactionsValues}>{item.type}</td>
+              <td className={css.transactionsValues}>
+                {item.type === 'INCOME' ? '+' : '-'}
+              </td>
               {/* <td className={css.transactionsValues}>{item.categoryId}</td> */}
               <td className={css.transactionsValues}>{item.category}</td>
               <td className={css.transactionsValues}>{item.comment}</td>

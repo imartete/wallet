@@ -2,6 +2,13 @@ import css from './TransactionsCards.module.css';
 import { nanoid } from 'nanoid';
 
 export const TransactionsCards = function ({ dataArr }) {
+  const normalize = num => {
+    return num
+      .toFixed(2)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+      .replace('-', '');
+  };
   return dataArr.map(item => (
     <ul
       key={nanoid()}
@@ -47,7 +54,7 @@ export const TransactionsCards = function ({ dataArr }) {
           Sum
         </span>
         <span className={`${css.transactionValue} ${css.balance}`} as="span">
-          {item.amount}
+          {normalize(item.amount)}
         </span>
       </li>
       <li className={css.transactionItem}>
@@ -55,7 +62,7 @@ export const TransactionsCards = function ({ dataArr }) {
           Balance
         </span>
         <span className={css.transactionValue} as="span">
-          {item.balanceAfter}
+          {normalize(item.balanceAfter)}
         </span>
       </li>
     </ul>
