@@ -1,7 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import authOperations from './authOperations';
-import transactionOperations from './../transaction/transactionOperations'
-
+import transactionOperations from './../transaction/transactionOperations';
 
 const initialState = {
   user: { id: '', username: '', email: '', balance: null },
@@ -37,6 +36,11 @@ const getActions = type => extraActions.map(action => action[type]);
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    reduceError(state) {
+      state.error = null;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(authOperations.register.fulfilled, (state, { payload }) => {
@@ -49,9 +53,12 @@ const authSlice = createSlice({
         state.token = payload.token;
         state.isAuth = true;
       })
-      .addCase(transactionOperations.addTransaction.fulfilled, (state, { payload }) => {
-        state.user.balance = payload.balanceAfter;
-      })
+      .addCase(
+        transactionOperations.addTransaction.fulfilled,
+        (state, { payload }) => {
+          state.user.balance = payload.balanceAfter;
+        }
+      )
       .addCase(authOperations.logOut.fulfilled, state => {
         state.user = { id: '', username: '', email: '', balance: null };
         state.token = null;
@@ -77,5 +84,7 @@ const authSlice = createSlice({
       .addMatcher(isAnyOf(...getActions('fulfilled')), fulfilled);
   },
 });
+
+export const { reduceError } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;
