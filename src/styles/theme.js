@@ -99,23 +99,30 @@ const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(switchAnatomy.keys);
 
 const baseStyle = definePartsStyle({
-  // define the part you're going to style
-  container: {
-    // ...
-  },
+  container: {},
   thumb: {
+    position: 'relative',
     size: 'xl',
     bg: colors.leisure,
     boxShadow: shadows.green,
+    width: '44px',
+    height: '44px',
+    mt: '-2px',
     _checked: {
+      ml: '16px',
       bg: '#FF6596',
       boxShadow: shadows.pink,
     },
   },
   track: {
+    display: 'flex',
+    alignItems: 'stretch',
     bg: 'white',
     border: '1px',
     borderColor: 'gray.200',
+    width: '80px',
+    height: '40px',
+    padding: 0,
   },
 });
 
@@ -131,7 +138,6 @@ export const theme = extendTheme({
   sizes,
   components: {
     Switch: switchTheme,
-    Button: {},
   },
 
   shadows,
