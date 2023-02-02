@@ -88,18 +88,11 @@ export const AddTransactionForm = () => {
                   >
                     <Select
                       {...field}
-                      variant="flushed"
                       placeholder="Select a category"
+                      variant="flushed"
                     >
                       {categories.map(category => (
-                        <option
-                          key={category.id}
-                          value={category.id}
-                          style={{
-                            backdropFilter: 'blur(10px)',
-                            color: 'black',
-                          }}
-                        >
+                        <option key={category.id} value={category.id}>
                           {category.name}
                         </option>
                       ))}
@@ -162,6 +155,9 @@ export const AddTransactionForm = () => {
               )}
             </Field>
             <Button
+              _hover={{
+                background: '#13f0bf',
+              }}
               py="13px"
               color="#FFFFFF"
               bgColor="#24CCA7"

@@ -108,7 +108,9 @@ export function LoginForm() {
               )}
             </Field>
             <Button
-              /*  isDisabled={!props.dirty}  */
+              _hover={{
+                background: '#13f0bf',
+              }}
               mt={4}
               py="13px"
               color="#FFFFFF"
