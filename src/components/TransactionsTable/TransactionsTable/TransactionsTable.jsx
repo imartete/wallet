@@ -13,7 +13,7 @@ export const TransactionsTable = function ({ dataArr }) {
   return (
     <section className={css.transactionSection}>
       <table className={css.transactionTable}>
-        <thead>
+        <thead style={{ width: '704px' }}>
           <tr className={css.transactionTableHead}>
             <th className={css.transactionTitles}>Date</th>
             <th className={css.transactionTitles}>Type</th>
