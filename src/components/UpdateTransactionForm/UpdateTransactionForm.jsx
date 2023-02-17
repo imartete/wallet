@@ -41,8 +41,6 @@ export const UpdateTransactionForm = () => {
       type: oneTransaction.type === '-' ? 'EXPENSE' : 'INCOME',
       balanceAfter: oneTransaction.balanceAfter,
     };
-    // console.log(oneTransaction);
-    // console.log(newTransaction);
     dispatch(updateTransaction(newTransaction));
     actions.setSubmitting(false);
     actions.resetForm();

@@ -36,7 +36,6 @@ export async function updateTransaction({
 
 export async function deleteTransaction(transactionId) {
   const data = await axios.delete(`/transactions/${transactionId}`);
-  console.log(data);
   return data;
 }
 

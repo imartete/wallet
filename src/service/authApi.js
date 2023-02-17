@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export async function postRegister(credentials) {
-  console.log(credentials);
   const { data } = await axios.post('/auth/sign-up', credentials);
   return data;
 }
