@@ -12,7 +12,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { useTransactions } from 'hooks/useTransactions';
 import { useAuth } from 'hooks/useAuth';
-import { ThreeDots } from 'react-loader-spinner';
+import Loader from 'components/Loader/Loader';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -25,18 +25,6 @@ export const App = () => {
 
   return (
     <>
-      {isLoading && (
-        <ThreeDots
-          height="80"
-          width="80"
-          radius="9"
-          color="#1c25cd"
-          ariaLabel="three-dots-loading"
-          wrapperStyle={{}}
-          wrapperClassName=""
-          visible={true}
-        />
-      )}
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route
@@ -79,6 +67,7 @@ export const App = () => {
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      {isLoading && <Loader />}
     </>
   );
 };
