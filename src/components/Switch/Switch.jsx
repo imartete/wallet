@@ -15,17 +15,6 @@ export function MyCheckbox({ children, ...props }) {
         </Text>
 
         <Switch
-          children={
-            !field.value ? (
-              <BsPlusLg
-                onClick={() => field.onChange(field.name)}
-                className="chakra-switch__label plus"
-                size="20px"
-              />
-            ) : (
-              <FiMinus className="chakra-switch__label minus" size="30px" />
-            )
-          }
           size="lg"
           {...field}
           {...props}
