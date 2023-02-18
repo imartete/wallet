@@ -1,7 +1,5 @@
 import { Stack, Switch, Text } from '@chakra-ui/react';
 import './Switch.modules.css';
-import { BsPlusLg } from 'react-icons/bs';
-import { FiMinus } from 'react-icons/fi';
 
 const { useField } = require('formik');
 

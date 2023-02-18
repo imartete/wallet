@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const BalanceWrap = styled.div`
   height: 80px;
   padding: 8px 40px 13px;
-  width: 280px;
+  width: 300px;
   margin-bottom: 32px;
   background: #ffffff;
   border-radius: 30px;
@@ -33,7 +33,7 @@ export const BalanceText = styled.h3`
   font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 30px;
+  font-size: 28px;
   line-height: 1.5;
   display: flex;
   align-items: center;

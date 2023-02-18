@@ -1,8 +1,19 @@
 import css from './TransactionsCards.module.css';
 import { nanoid } from 'nanoid';
 import { numberNormalize } from 'helpers/numberNormalize';
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import { useDispatch } from 'react-redux';
+import { isModalUpdateTransaction } from 'redux/modal/modalSlice';
+import { EditTransaction } from 'redux/transaction/transactionSlice';
+import { deleteTransaction } from 'redux/transaction/transactionOperations';
+import { Flex } from '@chakra-ui/react';
 
 export const TransactionsCards = function ({ dataArr }) {
+  const dispatch = useDispatch();
+  const onClickUpdate = transaction => {
+    dispatch(isModalUpdateTransaction(true));
+    dispatch(EditTransaction(transaction));
+  };
   return dataArr.map(item => (
     <ul
       key={nanoid()}
@@ -57,6 +68,25 @@ export const TransactionsCards = function ({ dataArr }) {
         </span>
         <span className={css.transactionValue} as="span">
           {numberNormalize(item.balanceAfter)}
+        </span>
+      </li>
+      <li className={css.transactionItem}>
+        <span className={css.transactionName} as="span">
+          Modify
+        </span>
+        <span className={css.transactionValue} as="span">
+          <Flex gap="3">
+            <DeleteIcon
+              boxSize="20px"
+              color="black"
+              onClick={() => dispatch(deleteTransaction(item))}
+            />
+            <EditIcon
+              boxSize="20px"
+              color="black"
+              onClick={() => onClickUpdate(item)}
+            />
+          </Flex>
         </span>
       </li>
     </ul>

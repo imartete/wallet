@@ -1,4 +1,3 @@
-import { Button } from '@chakra-ui/button';
 import css from './TransactionsTable.module.css';
 import { useDispatch } from 'react-redux';
 import { deleteTransaction } from 'redux/transaction/transactionOperations';
@@ -6,6 +5,7 @@ import { isModalUpdateTransaction } from 'redux/modal/modalSlice';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { EditTransaction } from 'redux/transaction/transactionSlice';
 import { numberNormalize } from 'helpers/numberNormalize';
+import { Flex } from '@chakra-ui/react';
 
 export const TransactionsTable = function ({ dataArr }) {
   // удаление транзакции
@@ -18,7 +18,7 @@ export const TransactionsTable = function ({ dataArr }) {
   return (
     <section className={css.transactionSection}>
       <table className={css.transactionTable}>
-        <thead style={{ width: '704px' }}>
+        <thead>
           <tr className={css.transactionTableHead}>
             <th className={css.transactionTitles}>Date</th>
             <th className={css.transactionTitles}>Type</th>
@@ -26,6 +26,7 @@ export const TransactionsTable = function ({ dataArr }) {
             <th className={css.transactionTitles}>Comment</th>
             <th className={css.transactionTitles}>Sum</th>
             <th className={css.transactionTitles}>Balance</th>
+            <th className={css.transactionTitles}>Edit</th>
           </tr>
         </thead>
 
@@ -34,7 +35,6 @@ export const TransactionsTable = function ({ dataArr }) {
             <tr className={css.transactionBodyLine}>
               <td className={css.transactionsValues}>{item.transactionDate}</td>
               <td className={css.transactionsValues}>{item.type}</td>
-              {/* <td className={css.transactionsValues}>{item.categoryId}</td> */}
               <td className={css.transactionsValues}>{item.category}</td>
               <td className={css.transactionsValues}>{item.comment}</td>
               <td className={item.type === '+' ? css.income : css.expense}>
@@ -43,30 +43,27 @@ export const TransactionsTable = function ({ dataArr }) {
               <td className={css.transactionsValues}>
                 {numberNormalize(item.balanceAfter)}
               </td>
-              <div className={css.blockButton}>
-                <Button
-                  borderRadius="50"
-                  backgroundColor="#24CCA7"
-                  _hover="#24CCA7"
-                  boxSize="44px"
-                  boxShadow=" 0px 6px 15px rgba(36, 204, 167, 0.5)"
-                  onClick={() => dispatch(deleteTransaction(item))}
+              <td>
+                <Flex
+                  direction="column"
+                  minWidth="max-content"
+                  alignItems="center"
+                  gap="2"
+                  pt="3"
+                  pb="3"
                 >
-                  <DeleteIcon boxSize="20px" color="#FFFFFF" />
-                </Button>
-              </div>
-              <div className={css.blockButton}>
-                <Button
-                  borderRadius="50"
-                  backgroundColor="#24CCA7"
-                  _hover="#24CCA7"
-                  boxSize="44px"
-                  boxShadow=" 0px 6px 15px rgba(36, 204, 167, 0.5)"
-                  onClick={() => onClickUpdate(item)}
-                >
-                  <EditIcon boxSize="20px" color="#FFFFFF" />
-                </Button>
-              </div>
+                  <DeleteIcon
+                    boxSize="20px"
+                    color="black"
+                    onClick={() => dispatch(deleteTransaction(item))}
+                  />
+                  <EditIcon
+                    boxSize="20px"
+                    color="black"
+                    onClick={() => onClickUpdate(item)}
+                  />
+                </Flex>
+              </td>
             </tr>
           ))}
         </tbody>
